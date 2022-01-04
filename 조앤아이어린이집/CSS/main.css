@@ -11,7 +11,7 @@ a {
 }
 a:link, a:visited, a:active, a:hover {
   text-decoration: none;
-  color: #222;
+  color: #4d4d4d;
 }
 ul {
   list-style: none;
@@ -22,7 +22,7 @@ ul {
 body {
   margin: 0 auto;
   font-family: 'Raleway', sans-serif;
-  color: #222;
+  color: #4d4d4d;
   font-weight: 300;
   margin: 0;
   height: 100vh;
@@ -144,6 +144,10 @@ body {
   width: 600px;
 }
 
+.menu-main:hover .menu-btn {
+  color: rgba(220, 20, 70, 0.89);
+}
+
 .menu-main:nth-child(4) .menu-sub, 
 .menu-main:nth-child(5) .menu-sub {
   flex-direction: row-reverse;
@@ -151,8 +155,12 @@ body {
 }
 
 .menu-sub a {
-  margin-right: 20px;
+  padding-right: 20px;
   cursor: pointer;
+}
+
+.menu-sub a:hover {
+  color: rgba(220, 20, 70, 0.89);
 }
 
 /* 메인 이미지 섹션 */
