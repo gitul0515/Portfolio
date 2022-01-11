@@ -33,28 +33,28 @@
 h1 {
   font-size: var(--font-large);
   font-weight: var(--weight-bold);
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 16px 0px;
 }
 
 h2 {
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 8px 0px;
 }
 
 h3 {
   font-size: var(--font-regular);
   font-weight: var(--weight-regular);
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 8px 0px;
 }
 
 p {
   font-size: var(--font-regular);
   font-weight: var(--weight-regular);
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 4px 0px;
 }
 
@@ -79,7 +79,14 @@ ul {
   margin: 0;
   padding-left: 0;
 }
+button {
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
 
+/* nav 영역 */
 #navbar {
   border: 1px solid red;
   display: flex;
@@ -118,4 +125,28 @@ ul {
 
 .navbar__menu__items:last-child {
   margin-right: 0;
+}
+
+/* Home 영역 */
+#home {
+  background: url(./Image/home-background.png), no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  padding: 40px;
+  color: var(--color-white);
+}
+
+#home__avatar {
+  border-radius: 50%;
+  border: 2px solid var(--color-light-white);
+}
+
+.home__contact {
+  font-size: var(--font-small);
+  border: 1px solid var(--color-white);
+  padding: 8px;
+  border-radius: var(--border-radius-size);
+  color: var(--color-white);
+  font-weight: var(--weight-semi-bold);
+  margin-top: 16px;
 }
