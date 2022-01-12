@@ -304,3 +304,61 @@ button {
   flex: 1;
   background-color: var(--color-light-grey);
 }
+
+/* Project 영역 */
+.projects__categories {
+  font-size: 0;
+}
+
+.category__btn {
+  border: 0.2px solid var(--color-dark-white);
+  padding: 6px 30px;
+  font-weight: var(--weight-semi-bold);
+  border-radius: var(--border-radius-size);
+  margin: 30px 0;
+}
+
+.category__cnt {
+  display: inline-block;
+  font-size: var(--font-small);
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-orange);
+  color: var(--color-light-white);
+  position: relative;
+  top: -10px;
+  left: 6px;
+  visibility: hidden;
+  transition: 0.1s;
+}
+
+.category__btn.active, 
+.category__btn:hover {
+  background-color: var(--color-pink);
+  color: var(--color-light-white);
+}
+
+.category__btn.active .category__cnt, 
+.category__btn:hover .category__cnt{
+  visibility: visible;
+  top: 0;
+}
+
+.projects__work {
+  border: 1px solid red;
+}
+
+.project {
+  border: 1px solid blue;
+}
+
+.project__img {
+  
+}
+
+
+.project__description {
+  display: none;
+}
