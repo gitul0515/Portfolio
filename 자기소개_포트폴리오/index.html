@@ -39,7 +39,7 @@
   </nav>
 
   <!-- Home -->
-  <section id="home">
+  <section id="home" class="section">
     <img src="./Image/profile3.png" alt="기홍 사진" id="home__avatar" width="220">
     <h1 class="home__title">Hello,<br>My name is Kwon gihong</h1>
     <h2 class="home__description">I am a junior frontend developer.</h2>
@@ -47,133 +47,140 @@
   </section>
 
   <!-- About -->
-  <section id="about">
+  <section id="about" class="section section__container">
     <h1>About me</h1>
-    <p>로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
+    <p class="about__description">로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
 
     <ul class="about__techstack">
       <li class="techstack__front--basic">
-        <div class="front--basic__icons">
+        <div class="techstack__icons">
           <i class="fab fa-html5"></i>
           <i class="fab fa-css3-alt"></i>
           <i class="fab fa-js"></i>
         </div>
-        <p class="front--basic__title">프론트엔드 기본</p>
-        <p class="front--basic__description">HTML, CSS, JavaScript, Sass, TypeScript, Web APIs</p>
+        <h2 class="techstack__title">프론트엔드 기본</h2>
+        <p class="techstack__description">HTML, CSS, JavaScript</p>
       </li>
       <li class="techstack__front--advanced">
-        <div class="front--advanced__icons">
+        <div class="techstack__icons">
           <i class="fab fa-react" style="user-select: auto;"></i>
         </div>
-        <p class="front--basic__title">프론트엔드 심화</p>
-        <p class="front--basic__description">React</p>
+        <h2 class="techstack__title">프론트엔드 심화</h2>
+        <p class="techstack__description">React</p>
       </li>
       <li class="techstack__back--basic">
-        <div class="back--basic__icons">
+        <div class="techstack__icons">
           <i class="fab fa-node"></i>
           <i class="fas fa-database"></i>
         </div>
-        <p class="back--basic__title">백엔드 기본</p>
-        <p class="back--basic__description">Node.js, SQL</p>
+        <h2 class="techstack__title">백엔드 기본</h2>
+        <p class="techstack__description">Node.js, SQL</p>
       </li>
     </ul>
 
     <ul class="about__educations">
       <li class="education">
         <img src="./Image/ERICA.png" alt="한양대학교 에리카" width="100">
-        <p class="education__description">한양대학교 에리카</p>
-        <p class="education__period">-2021</p>
+        <div class="education__text">
+          <p class="education__description">한양대학교 문화인류학과 전공<br>
+          디자인 테크놀로지(UI/UX) 복수전공</p>
+          <p class="education__period">2014~2021</p>
+        </div>
       </li>
     </ul>
   </section>
   
   <!-- Skills -->
-  <section id="skills">
-    <h1>Skills</h1>
-    <h3>Skills & Attributes</h3>
-    <p>로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
+  <section id="skills" class="section">
+    <div class="section__container">
+      <h1>Skills</h1>
+      <h2>Skills & Attributes</h2>
+      <p class="skills__description">로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
 
-    <div class="skillset">
-      <div class="skillset__left">
-        <h4 class="skillset__title">Skills</h4>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
+      <div class="skillset">
+        <div class="skillset__left">
+          <h3 class="skillset__title">Skills</h3>
+          <div class="skill">
+            <div class="skill__description">
+              <span>HTML</span>
+              <span>90%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 90%"></div>
+            </div>
           </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
+          <div class="skill">
+            <div class="skill__description">
+              <span>CSS</span>
+              <span>90%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__description">
+              <span>Javascript</span>
+              <span>90%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__description">
+              <span>Typescript</span>
+              <span>85%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__description">
+              <span>React</span>
+              <span>80%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__description">
+              <span>Node.js</span>
+              <span>50%</span>
+            </div>
+            <div class="skill__bar">
+              <div class="skill__value" style="width: 50%"></div>
+            </div>
           </div>
         </div>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
-          </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
-          </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
-          </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
-          </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="skill__description">
-            <span>HTML</span>
-            <span>99%</span>
-          </div>
-          <div class="skill__bar">
-            <div class="skill__value"></div>
-          </div>
-        </div>
-      </div>
 
-      <div class="skillset__right">
-        <div class="tools">
-          <h4 class="skillset__title">Tools</h4>
-          <ul>
-            <li>vscode</li>
-            <li>photoshop</li>
-            <li>Team Foundation</li>
-            <li>Power Point</li>
-          </ul>
-        </div>
-        <div class="etc">
-          <h4 class="skillset__title">Etc</h4>
-          <ul>
-            <li>Git</li>
-          </ul>
+        <div class="skillset__right">
+          <div class="tools">
+            <h3 class="skillset__title">Tools</h3>
+            <ul>
+              <li>vscode</li>
+              <li>photoshop</li>
+              <li>Team Foundation</li>
+              <li>Power Point</li>
+              <li>...</li>
+            </ul>
+          </div>
+          <div class="etc">
+            <h3 class="skillset__title">Etc</h3>
+            <ul>
+              <li>Git</li>
+              <li>...</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects">
+  <section id="projects" class="section">
     <h1>Projects</h1>
     <div class="projects__categories">
       <button class="category__btn">
@@ -223,10 +230,11 @@
       </a>
     </div>
   </section>
+
   <!-- Testimonial -->
-  <section id="testimonial">
+  <section id="testimonial" class="section">
     <h1>Testimonials</h1>
-    <h4>See what they say about me</h4>
+    <h3>See what they say about me</h3>
 
     <div class="testimonials">
       <div class="testimonial">
@@ -257,8 +265,9 @@
       </div>
     </div>
   </section>
+
   <!-- Contact -->
-  <section id="contact">
+  <section id="contact" class="section">
     <h1 class="contact__title">Let's talk</h1>
     <h3 class="contact__email">gitul0515@gmail.com</h3>
     <div class="contact__links">
