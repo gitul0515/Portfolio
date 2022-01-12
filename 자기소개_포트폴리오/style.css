@@ -99,9 +99,14 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px;
-  padding-right: 0;
-  color: var(--color-black);
+  padding: 10px 20px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+}
+
+#navbar a {
+  color: var(--color-white);
+  font-size: calc(var(--font-medium) * 1.2);
 }
 
 .navbar__logo {
@@ -111,6 +116,7 @@ button {
 
 .navbar__logo i {
   margin-right: 4px;
+  font-size: calc(var(--font-medium) * 1.2);
 }
 
 .navbar__menu {
@@ -122,16 +128,26 @@ button {
   margin: 0 6px;
   cursor: pointer;
   border-radius: var(--border-radius-size);
+  font-size: var(--font-regular);
 }
 .navbar__menu__items.active {
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-white);
 }
 .navbar__menu__items:hover {
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-light-green);
 }
 
 .navbar__menu__items:last-child {
   margin-right: 0;
+}
+
+.navbar__toggle-btn {
+  position: absolute;
+  right: 32px;
+  top: 28px;
+  font-size: calc(var(--font-medium) * 0.8);
+  cursor: pointer;
+  display: none;
 }
 
 /* Home 영역 */
@@ -149,10 +165,12 @@ button {
 #home {
   background: url(./Image/home-background.png), no-repeat center center;
   background-size: cover;
-  color: var(--color-white);
 }
 
 #home__avatar {
+  margin-top: -10px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   border: 2px solid var(--color-light-white);
 }
@@ -474,4 +492,41 @@ button {
 .contact__links i:hover {
   transform: scale(1.1);
   color: var(--color-orange);
+}
+
+/* 미디어 쿼리 */
+@media screen and (max-width: 800px) {
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__menu {
+    margin-top: 16px;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    display: none;
+  }
+
+  .navbar__menu__items {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar__menu__items.active {
+    border: none;
+  }
+
+  .navbar__toggle-btn {
+    display: block;
+  }
+
+  .about__techstack {
+    flex-direction: column;
+  }
+
+  .skillset__right {
+    display: none;
+  }
 }
