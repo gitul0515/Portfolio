@@ -47,47 +47,49 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="section section__container">
-    <h1>About me</h1>
-    <p class="about__description">로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
+  <section id="about" class="section">
+    <div class="section__container">
+      <h1>About me</h1>
+      <p class="about__description">로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.</p>
 
-    <ul class="about__techstack">
-      <li>
-        <div class="techstack__icons">
-          <i class="fab fa-html5"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fab fa-js"></i>
-        </div>
-        <h2 class="techstack__title">프론트엔드 기본</h2>
-        <p class="techstack__description">HTML, CSS, JavaScript</p>
-      </li>
-      <li>
-        <div class="techstack__icons">
-          <i class="fab fa-react" style="user-select: auto;"></i>
-        </div>
-        <h2 class="techstack__title">프론트엔드 심화</h2>
-        <p class="techstack__description">React</p>
-      </li>
-      <li>
-        <div class="techstack__icons">
-          <i class="fab fa-node"></i>
-          <i class="fas fa-database"></i>
-        </div>
-        <h2 class="techstack__title">백엔드 기본</h2>
-        <p class="techstack__description">Node.js, SQL</p>
-      </li>
-    </ul>
+      <ul class="about__techstack">
+        <li>
+          <div class="techstack__icons">
+            <i class="fab fa-html5"></i>
+            <i class="fab fa-css3-alt"></i>
+            <i class="fab fa-js"></i>
+          </div>
+          <h2 class="techstack__title">프론트엔드 기본</h2>
+          <p class="techstack__description">HTML, CSS, JavaScript</p>
+        </li>
+        <li>
+          <div class="techstack__icons">
+            <i class="fab fa-react" style="user-select: auto;"></i>
+          </div>
+          <h2 class="techstack__title">프론트엔드 심화</h2>
+          <p class="techstack__description">React</p>
+        </li>
+        <li>
+          <div class="techstack__icons">
+            <i class="fab fa-node"></i>
+            <i class="fas fa-database"></i>
+          </div>
+          <h2 class="techstack__title">백엔드 기본</h2>
+          <p class="techstack__description">Node.js, SQL</p>
+        </li>
+      </ul>
 
-    <ul class="about__educations">
-      <li class="education">
-        <img src="./Image/ERICA.png" alt="한양대학교 에리카" width="100">
-        <div class="education__text">
-          <p class="education__description">한양대학교 문화인류학과 전공<br>
-          디자인 테크놀로지(UI/UX) 복수전공</p>
-          <p class="education__period">2014~2021</p>
-        </div>
-      </li>
-    </ul>
+      <ul class="about__educations">
+        <li class="education">
+          <img src="./Image/ERICA.png" alt="한양대학교 에리카" width="100">
+          <div class="education__text">
+            <p class="education__description">한양대학교 문화인류학 전공<br>
+            디자인 테크놀로지(UI/UX) 복수전공</p>
+            <p class="education__period">2014~2021</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   
   <!-- Skills -->
@@ -181,143 +183,145 @@
 
   <!-- Projects -->
   <section id="projects" class="section">
-    <h1>Projects</h1>
-    <div class="projects__categories">
-      <button class="category__btn active">
-        All<span class="category__cnt">8</span>
-      </button>
-      <button class="category__btn">
-        Clone Coding<span class="category__cnt">3</span>
-      </button>
-      <button class="category__btn">
-        Personal Project<span class="category__cnt">3</span>
-      </button>
-      <button class="category__btn">
-        Team Project<span class="category__cnt">2</span>
-      </button>
-    </div>
-
-    <div class="projects__work">
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project1.png" 
-          alt="Youtube"
-          class="project__img"
+    <div class="section__container">
+      <h1>Projects</h1>
+      <div class="projects__categories">
+        <button class="category__btn active">
+          All<span class="category__cnt">8</span>
+        </button>
+        <button class="category__btn">
+          Clone Coding<span class="category__cnt">3</span>
+        </button>
+        <button class="category__btn">
+          Personal Project<span class="category__cnt">3</span>
+        </button>
+        <button class="category__btn">
+          Team Project<span class="category__cnt">2</span>
+        </button>
+      </div>
+  
+      <div class="projects__work">
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project2.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project1.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project3.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project2.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project4.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project3.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project5.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project4.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project6.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project5.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project7.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project6.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
-      <a
-        href="#" 
-        class="project" 
-        target="_blank"
-      >
-        <img 
-          src="./Image/projects/project8.png" 
-          alt="Youtube"
-          class="project__img"
+          <img 
+            src="./Image/projects/project7.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+        <a
+          href="#" 
+          class="project" 
+          target="_blank"
         >
-        <div class="project__description">
-          <h3>Youtube site</h3>
-          <span>Clone coding with HTML and CSS</span>
-        </div>
-      </a>
+          <img 
+            src="./Image/projects/project8.png" 
+            alt="Youtube"
+            class="project__img"
+          >
+          <div class="project__description">
+            <h3>Youtube site</h3>
+            <span>Clone coding with HTML and CSS</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -361,7 +365,7 @@
   <!-- Contact -->
   <section id="contact" class="section">
     <h1 class="contact__title">Let's talk</h1>
-    <h3 class="contact__email">gitul0515@gmail.com</h3>
+    <h2 class="contact__email">gitul0515@gmail.com</h2>
     <div class="contact__links">
       <a href="https://github.com/gitul0515" target="_blank">
         <i class="fab fa-github"></i>

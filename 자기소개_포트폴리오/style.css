@@ -12,6 +12,8 @@
   --color-yellow: #fff7d1;
   --color-orange: #feb546;
   --color-black: #000000;
+  --color-green: #06D6A0;
+  --color-light-green: #50E2BC;
 
   /* Font size */
   --font-large: 48px;
@@ -168,6 +170,7 @@ button {
 /* About 영역 */
 #about {
   color: var(--color-black);
+  background-color: var(--color-light-white);
 }
 
 .about__description {
@@ -202,7 +205,6 @@ button {
 }
 
 .techstack__icons:hover i {
-  color: var(--color-pink);
   transform: rotate(-25deg) scale(1.1);
 }
 
@@ -336,7 +338,7 @@ button {
 
 .category__btn.active, 
 .category__btn:hover {
-  background-color: var(--color-pink);
+  background-color: var(--color-green);
   color: var(--color-light-white);
 }
 
@@ -350,11 +352,12 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .project {
-  width: 270px;
-  height: 270px;
+  width: 190px;
+  height: 190px;
   margin: 2px;
   background-color: var(--color-light-white);
   position: relative;
@@ -435,8 +438,6 @@ button {
   margin-left: 30px;
 }
 
-
-
 .testimonial__speech {
   background-color: var(--color-white);
   padding: 20px;
@@ -451,5 +452,26 @@ button {
 }
 
 .testimonial__name a {
-  color: var(--color-pink);
+  color: var(--color-green);
+}
+
+/* Contact 영역 */
+#contact {
+  background-color: var(--color-green);
+}
+
+#contact h1, #contact h2, #contact a, #contact i,
+#contact p {
+  color: var(--color-white);
+}
+
+.contact__links i {
+  font-size: var(--font-large);
+  margin: 16px 6px;
+  transition: 0.3s;
+}
+
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-orange);
 }
