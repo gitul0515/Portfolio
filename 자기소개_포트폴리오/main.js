@@ -20,10 +20,21 @@ document.addEventListener('scroll', () => {
 })
 
 // navbar__menu를 클릭하면 해당 위치로 스크롤 이동
-const MenuSkills = document.querySelector('.navbar__menu__items:nth-child(3)');
-const skills = document.querySelector('#skills');
-const skillsYPos = skills.getBoundingClientRect().top;
-
-MenuSkills.addEventListener('click', () => {
-  scrollTo({top: skillsYPos, behavior: 'smooth'});
+navbarMenu.addEventListener('click', event => {
+  const target = event.target;
+  const link = target.dataset.link;
+  if (!link) return;
+  
+  scrollToElem(link);
 })
+
+// home__contact을 클릭하면 contact 섹션으로 스크롤 이동
+const homeContact = document.querySelector('.home__contact');
+homeContact.addEventListener('click', () => {
+  scrollToElem('#contact');
+})
+
+function scrollToElem(selector) {
+  const element = document.querySelector(selector);
+  element.scrollIntoView({behavior: 'smooth'});
+}
