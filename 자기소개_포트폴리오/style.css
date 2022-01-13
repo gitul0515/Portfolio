@@ -12,6 +12,7 @@
   --color-yellow: #fff7d1;
   --color-orange: #feb546;
   --color-black: #000000;
+  --color-dark-green: #006B4F;
   --color-green: #06D6A0;
   --color-light-green: #50E2BC;
 
@@ -525,6 +526,34 @@ i.fa-database {
   color: var(--color-orange);
 }
 
+/* backToTop 버튼 */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: var(--color-dark-green);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#back-to-top i {
+  color: var(--color-white);
+  font-size: var(--font-medium);
+}
+
+#back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* 미디어 쿼리 */
 @media screen and (max-width: 800px) {
   #navbar {
@@ -582,5 +611,10 @@ i.fa-database {
   .testimonial__avatar {
     width: 100px;
     height: 100px;
+  }
+
+  #back-to-top {
+    width: 46px;
+    height: 46px;
   }
 }

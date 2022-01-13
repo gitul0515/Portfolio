@@ -38,3 +38,26 @@ function scrollToElem(selector) {
   const element = document.querySelector(selector);
   element.scrollIntoView({behavior: 'smooth'});
 }
+
+// 스크롤이 내려가면 home 섹션이 투명해짐
+const homeHeight = document.querySelector('#home').getBoundingClientRect().height;
+
+document.addEventListener('scroll', () => {
+  const homeOpacity = document.querySelector('.home__container');
+  homeOpacity.style.opacity = `${1 - scrollY / homeHeight}`;
+})
+
+// 버튼을 클릭하면 스크롤이 맨 위로 올라감
+const backToTop = document.querySelector('#back-to-top');
+
+document.addEventListener('scroll', () => {
+  if (scrollY > homeHeight / 2) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+})
+
+backToTop.addEventListener('click', () => {
+  scrollTo({top: 0, behavior: 'smooth'});
+})
