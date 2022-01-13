@@ -74,6 +74,7 @@ p {
 body {
   font-family: 'Open Sans', sans-serif;
   cursor: default;
+  margin: 0;
 }
 
 /* 태그 스타일 초기화 */
@@ -100,8 +101,15 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: var(--color-green);
+  background-color: transparent;
   color: var(--color-white);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+#navbar.bg-green {
+  background-color: var(--color-green);
 }
 
 #navbar a {
@@ -128,7 +136,7 @@ button {
   margin: 0 6px;
   cursor: pointer;
   border-radius: var(--border-radius-size);
-  font-size: var(--font-regular);
+  font-size: calc(var(--font-regular)*1.1);
 }
 .navbar__menu__items.active {
   border: 1px solid var(--color-white);
@@ -144,7 +152,7 @@ button {
 .navbar__toggle-btn {
   position: absolute;
   right: 32px;
-  top: 28px;
+  top: 20px;
   font-size: calc(var(--font-medium) * 0.8);
   cursor: pointer;
   display: none;
@@ -158,8 +166,9 @@ button {
 }
 
 .section__container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
+  padding: 0 40px;
 }
 
 #home {
@@ -168,9 +177,9 @@ button {
 }
 
 #home__avatar {
-  margin-top: -10px;
-  width: 250px;
-  height: 250px;
+  margin-top: 46px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   border: 2px solid var(--color-light-white);
 }
@@ -182,7 +191,7 @@ button {
   border-radius: var(--border-radius-size);
   color: var(--color-white);
   font-weight: var(--weight-semi-bold);
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 /* About 영역 */
@@ -224,6 +233,25 @@ button {
 
 .techstack__icons:hover i {
   transform: rotate(-25deg) scale(1.1);
+}
+
+i.fa-html5 {
+  color: #FE4C1E;
+}
+i.fa-css3-alt {
+  color: #0071BF;
+}
+i.fa-js {
+  color: #E6B100;
+}
+i.fa-react {
+  color: #02D9FF;
+}
+i.fa-node {
+  color: #90C53F;
+}
+i.fa-database {
+  color: #428BC7;
 }
 
 .techstack__title {
@@ -285,8 +313,8 @@ button {
 }
 
 .skill {
-  margin-bottom: 20px;
-  padding: 0 60px;
+  margin-bottom: 26px;
+  padding: 0 45px;
 }
 
 .skill__description {
@@ -314,20 +342,23 @@ button {
 }
 
 .tools {
-  padding-top: 10px;
+  padding: 10px 0 18px 0;
   flex: 1.4;
   background-color: var(--color-grey);
 }
 
 .etc {
-  padding-top: 10px;
+  padding: 10px 0 18px 0;
   flex: 1;
   background-color: var(--color-light-grey);
 }
 
 /* Project 영역 */
 .projects__categories {
+  display: flex;
+  justify-content: center;
   font-size: 0;
+  flex-wrap: wrap;
 }
 
 .category__btn {
@@ -374,8 +405,8 @@ button {
 }
 
 .project {
-  width: 190px;
-  height: 190px;
+  width: 220px;
+  height: 220px;
   margin: 2px;
   background-color: var(--color-light-white);
   position: relative;
@@ -435,7 +466,7 @@ button {
 
 .testimonial {
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .testimonial:nth-child(even) {
@@ -509,6 +540,10 @@ button {
     display: none;
   }
 
+  .navbar__menu.show {
+    display: flex;
+  }
+
   .navbar__menu__items {
     width: 100%;
     text-align: center;
@@ -526,7 +561,26 @@ button {
     flex-direction: column;
   }
 
-  .skillset__right {
-    display: none;
+  .about__techstack li {
+    margin-bottom: 28px;
+  }
+
+  .category__btn {
+    margin: 0;
+    flex-basis: 50%;
+  }
+
+  .project {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+
+  .testimonial__avatar {
+    width: 100px;
+    height: 100px;
   }
 }
