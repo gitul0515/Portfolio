@@ -372,23 +372,26 @@ i.fa-database {
   font-weight: var(--weight-semi-bold);
   border-radius: var(--border-radius-size);
   margin: 30px 0;
+  position: relative;
 }
 
 .category__cnt {
   display: inline-block;
-  font-size: var(--font-small);
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
+  font-size: var(--font-micro);
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
   border-radius: 50%;
   background-color: var(--color-orange);
   color: var(--color-light-white);
-  position: relative;
-  top: -10px;
-  left: 6px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 7px;
   opacity: 0;
-  transition: 0.3s ease;
+  transition: 0.5s ease;
   pointer-events: none;
+  text-align: center;
 }
 
 .category__btn.active, 
@@ -400,7 +403,7 @@ i.fa-database {
 .category__btn.active .category__cnt, 
 .category__btn:hover .category__cnt{
   opacity: 1;
-  top: 0;
+
 }
 
 .projects__work {
@@ -631,12 +634,16 @@ i.fa-database {
   }
 
   .category__btn {
-    margin: 0;
-    flex-basis: 50%;
+    margin: 2px 0;
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 6px 14px;
+  }
+
+  .category__cnt {
+    right: 20px;
   }
 
   .project {
@@ -653,9 +660,16 @@ i.fa-database {
     flex-direction: column;
   }
 
-  .testimonial__avatar {
+  .testimonial:nth-child(2n + 1), .testimonial:nth-child(2n) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial:nth-child(2n + 1) .testimonial__avatar, 
+  .testimonial:nth-child(2n) .testimonial__avatar {
     width: 100px;
     height: 100px;
+    margin: 0 0 10px 0;
   }
 
   #back-to-top {
