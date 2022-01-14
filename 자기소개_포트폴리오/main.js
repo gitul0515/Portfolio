@@ -11,6 +11,12 @@ navbarBtn.addEventListener('click', () => {
 const navBar = document.querySelector('#navbar');
 const navBarHeight = navBar.getBoundingClientRect().height;
 
+if (scrollY > navBarHeight) {
+  navBar.classList.add('bg-green');
+} else {
+  navBar.classList.remove('bg-green');
+}
+
 document.addEventListener('scroll', () => {
   if (scrollY > navBarHeight) {
     navBar.classList.add('bg-green');
@@ -20,12 +26,17 @@ document.addEventListener('scroll', () => {
 })
 
 // navbar__menu를 클릭하면 해당 위치로 스크롤 이동
+let curMenu = navbarMenu.firstElementChild;
 navbarMenu.addEventListener('click', event => {
   const target = event.target;
   const link = target.dataset.link;
   if (!link) return;
   
   scrollToElem(link);
+
+  curMenu.classList.remove('active');
+  curMenu = target;
+  curMenu.classList.add('active');
 })
 
 // home__contact을 클릭하면 contact 섹션으로 스크롤 이동
@@ -61,3 +72,29 @@ document.addEventListener('scroll', () => {
 backToTop.addEventListener('click', () => {
   scrollTo({top: 0, behavior: 'smooth'});
 })
+
+// 카테고리로 분류하여 프로젝트를 보여주기
+const projectBtns = document.querySelector('.projects__categories');
+const projectContainer = document.querySelector('.projects__work');
+const projects = [...document.querySelectorAll('.project')];
+
+// let current = categories.firstElementChild;
+
+projectBtns.addEventListener('click', e => {
+  const target = e.target;
+  const filter = target.dataset.filter;
+  if (!filter) return;
+  
+  projectContainer.classList.add('fade-out');
+  setTimeout(() => {
+    projects.forEach(project => {
+      if(filter === '*' || filter === project.dataset.filter) {
+        project.classList.remove('invisible');
+      } else {
+        project.classList.add('invisible');
+      }
+    })
+    projectContainer.classList.remove('fade-out');
+  }, 300);
+})
+

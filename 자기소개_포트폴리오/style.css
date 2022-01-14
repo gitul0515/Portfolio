@@ -138,9 +138,10 @@ button {
   cursor: pointer;
   border-radius: var(--border-radius-size);
   font-size: calc(var(--font-regular)*1.1);
+  border: 1px solid transparent;
 }
 .navbar__menu__items.active {
-  border: 1px solid var(--color-white);
+  border-color: var(--color-white);
 }
 .navbar__menu__items:hover {
   background-color: var(--color-light-green);
@@ -384,6 +385,7 @@ i.fa-database {
   left: 6px;
   opacity: 0;
   transition: 0.3s ease;
+  pointer-events: none;
 }
 
 .category__btn.active, 
@@ -403,6 +405,13 @@ i.fa-database {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 10px;
+  opacity: 1;
+  transition: 0.3s ease-out;
+}
+
+.projects__work.fade-out {
+  opacity: 0;
+  transform: scale(0.95) translateY(40px);
 }
 
 .project {
@@ -414,6 +423,10 @@ i.fa-database {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.project.invisible {
+  display: none;
 }
 
 .project__img {
@@ -447,7 +460,7 @@ i.fa-database {
   background-color: var(--color-dark-white);
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 48%;
   transform: translateX(-50%);
 }
 
