@@ -33,6 +33,8 @@
     <!-- 인터넷 익스플로러용 favicon 설정 -->
     <link rel="short icon" type="image/x-icon" href="img/fun-coding.ico">
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- CSS Reset -->
     <link rel="stylesheet" href="../CSS/normalize.css">
@@ -40,100 +42,33 @@
     <link rel="stylesheet" href="../plugins/fontawesome-free-5.15.4-web/css/all.css">
     <!-- CSS File -->
     <link rel="stylesheet" href="../CSS/main.css">
+    <!-- JS File -->
+    <script src="../JS/main.js" defer></script>
 </head>
 <body>
-    <!-- 헤더 영역  -->
-    <header>
-        <div class="inner">
-            <div class="head-container">
-                <div class="head-topmenu">
-                  <a href="#none">
-                    <i class="fas fa-user-alt"></i>로그인
-                  </a>
-                  <a>
-                    <i class="fas fa-edit"></i>회원가입
-                  </a>
-                  <a>
-                    <i class="fas fa-bars"></i>사이트맵
-                  </a>
-                </div>
-                <div class="head-title">
-                  <div class="head-logo">
-                    <a href="#"></a>
-                  </div>
-                  <div class="head-menu">
-                    <div class="menu-main">
-                      <button class="menu-btn">어린이집 소개</button>
-                      <div class="menu-sub">
-                        <a href="#">인사말</a>
-                        <a href="#">연혁</a>
-                        <a href="#">직원소개</a>
-                        <a href="#">교육환경</a>
-                        <a href="#">오시는 길</a>
-                      </div>
-                    </div>
-                    <div class="menu-main">
-                      <button class="menu-btn">교육과정</button>
-                      <div class="menu-sub">
-                        <a href="#">교육프로그램</a>
-                        <a href="#">연간교육계획안</a>
-                        <a href="#">특별활동</a>
-                        <a href="#">하루일과</a>
-                      </div>
-                    </div>
-                    <div class="menu-main">
-                      <button class="menu-btn">우리반 이야기</button>
-                      <div class="menu-sub">
-                        <a href="#">새싹반</a>
-                        <a href="#">잎새반</a>
-                        <a href="#">꽃잎반</a>
-                      </div>
-                    </div>
-                    <div class="menu-main">
-                      <button class="menu-btn">부모마당</button>
-                      <div class="menu-sub">
-                        <a href="#">공지사항</a>
-                        <a href="#">포토갤러리</a>
-                        <a href="#">가정통신문</a>
-                        <a href="#">월중행사표</a>
-                      </div>
-                    </div>
-                    <div class="menu-main">
-                      <button class="menu-btn">입학안내</button>
-                      <div class="menu-sub">
-                        <a href="#">입학안내</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
+    <!-- 헤더 영역 -->
+    <header class="header">
+      <div class="header__inner">
+        <ul class="header__top-menu">
+          <li class="top-menu__item"><a href="#">홈</a></li>
+          <li class="top-menu__item"><a href="#">회원가입</a></li>
+          <li class="top-menu__item"><a href="#">로그인</a></li>
+          <li class="top-menu__item"><a href="#">사이트맵</a></li>
+          <li class="top-menu__zoom">
+            <a class="zoom__btn zoom__btn--minus" href="#">-</a>
+            <a class="zoom__btn zoom__btn--plus" href="#">+</a>
+          </li>
+        </ul>
+
+        <a class="header__logo" href="#">
+          <img class = "header__img" src="../Image/조앤아이로고.png" alt="조앤아이 어린이집" height="80">
+        </a>
+
+        <div class="header__search">
+          <input class="search__input" type="text">
+          <button class="search__btn"></button>
         </div>
-    </header>
-
-    <!-- 메인 이미지 섹션 -->
-    <section class="main-image">
-      <div class="inner">
-
       </div>
-    </section>
-
-    <!-- 메인 이미지 섹션 -->
-    <!-- <section class="main">
-        <div class="main-container">
-            <div class="inner">
-                <div class="title-container">
-                    <div class="title">광고보다 강의에 집중합니다</div>
-                    <div class="message">
-                        전자책보다 좋은 자료와 현업의 경험을 함께<br>
-                        검증된 온라인 강의를<br>
-                        검증된 온라인 플랫폼에서 제공합니다.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Javscript -->
-    <script src="../JS/main.js"></script>
+    </header>
 </body>
 </html>
