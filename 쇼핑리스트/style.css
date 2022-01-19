@@ -15,7 +15,7 @@
   --color-blue: #45ADA8;
   --color-light-green: #9DE0AD;
   --color-light-yellow: #E5FCC2;
-  --color-green: #61BB46;
+  --color-green: #4fbb2e;
 
   /* Font size */
   --font-large: 48px;
@@ -35,7 +35,7 @@
   /* Size */
   --border-radius-size: 8px;
   --icon-large-size: 18px;
-  --icon-small-size: 18px;
+  --icon-small-size: 20px;
 
   /* Animation */
   --animation-duration: 0.3s
@@ -140,19 +140,33 @@ button {
   float: left;
 }
 
+.item__name.checked {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-dark-grey);
+  color: var(--color-light-grey);
+}
+
 .item__icon {
   margin-left: 8px;
   cursor: pointer;
   font-size: var(--icon-small-size);
+  transition: 0.3s;
 }
 
-.item__icon--checked {
+.item__icon:hover {
+  transform: rotate(15deg);
+}
+
+.item__icon--check {
   color: var(--color-light-grey);
-  /* color: #61BB46; */
+}
+
+.item__icon--check.checked {
+  color: var(--color-green);
 }
 
 .item__icon--remove {
-  color: #E03A3E;
+  color: var(--color-red);
 }
 
 .shop-list__footer {
