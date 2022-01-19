@@ -18,6 +18,7 @@
     <div class="shop-list">
       <div class="shop-list__header">
         <h2 class="shop-list__title">쇼핑 리스트</h3>
+        <time datetime="2022-01-19">2022. 1. 19</time>
       </div>
 
       <div class="shop-list__main">
@@ -28,14 +29,20 @@
             <i class="item__icon item__icon--checked far fa-check-circle"></i>
             <i class="item__icon item__icon--remove far fa-trash-alt"></i>
           </li>
+          <li class="shop-list__item">
+            <span class="item__name">바나나</span>
+            <span class="item__price">3000원</span>
+            <i class="item__icon item__icon--checked far fa-check-circle"></i>
+            <i class="item__icon item__icon--remove far fa-trash-alt"></i>
+          </li>
         </ul>
         <p class="shop-list__total-price">총 금액: <span>5,000원</span></p>
       </div>
 
       <div class="shop-list__footer">
-        <input class="shop-list__input shop-list__input--item" type="text" value="제품명">
+        <input class="shop-list__input shop-list__input--item" type="text" placeholder="제품명" required>
         <input class="shop-list__input shop-list__input--price"
-        type="text" value="예상 가격">
+        type="text" placeholder="예상 가격">
         <button class="shop-list__btn">
           <i class="btn__icon fas fa-cart-arrow-down"></i>
         </button>
