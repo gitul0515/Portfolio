@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쇼핑 리스트</title>
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/0766aa68a0.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Javascript -->
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="shop-list">
+      <div class="shop-list__header">
+        <h2 class="shop-list__title">쇼핑 리스트</h3>
+      </div>
+
+      <div class="shop-list__main">
+        <ul class="shop-list__items">
+          <li class="shop-list__item">
+            <span class="item__name">우유</span>
+            <span class="item__price">2000원</span>
+            <i class="item__icon item__icon--checked far fa-check-circle"></i>
+            <i class="item__icon item__icon--remove far fa-trash-alt"></i>
+          </li>
+        </ul>
+        <p class="shop-list__total-price">총 금액: <span>5,000원</span></p>
+      </div>
+
+      <div class="shop-list__footer">
+        <input class="shop-list__input shop-list__input--item" type="text" value="제품명">
+        <input class="shop-list__input shop-list__input--price"
+        type="text" value="예상 가격">
+        <button class="shop-list__btn">
+          <i class="btn__icon fas fa-cart-arrow-down"></i>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

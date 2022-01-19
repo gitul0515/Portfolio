@@ -2,7 +2,13 @@ https://child.eugenes.co.kr/
 http://hanbyeol.co.kr/main/main.html#
 http://jayu.icekg.kr/main.do
 http://dorim-i.net/
+http://nuriddlekids.co.kr/01_01.php
 
+<i class="fas fa-plus"></i>
+<i class="fas fa-minus"></i>
+
+#00a99d
+#9ee2f5
 
 아이들의 꿈이 자라나는 곳 
 
@@ -10,7 +16,9 @@ http://dorim-i.net/
 
 
 
+#ffea00
 
+#ffff56
 
 어린이집소개
  - 인사말
