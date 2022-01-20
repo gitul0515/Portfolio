@@ -12,6 +12,7 @@
   --color-yellow: #fff7d1;
   --color-orange: #feb546;
   --color-black: #000000;
+  --color-dark-blue: #2a7e7a;
   --color-blue: #45ADA8;
   --color-light-green: #9DE0AD;
   --color-light-yellow: #E5FCC2;
@@ -19,7 +20,7 @@
 
   /* Font size */
   --font-large: 48px;
-  --font-medium: 28px;
+  --font-medium: 24px;
   --font-regular: 18px;
   --font-small: 16px;
   --font-micro: 14px;
@@ -34,7 +35,7 @@
 
   /* Size */
   --border-radius-size: 8px;
-  --icon-large-size: 18px;
+  --icon-large-size: 30px;
   --icon-small-size: 20px;
 
   /* Animation */
@@ -131,6 +132,7 @@ button {
 }
 
 .shop-list__main {
+  position: relative;
   padding: 10px 20px;
   text-align: right;
   min-height: 300px;
@@ -177,6 +179,21 @@ button {
   visibility: visible;
 }
 
+.shop-list__guidance {
+  text-align: center;
+  color: var(--color-light-grey);
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s;
+}
+
+.shop-list__guidance.hidden {
+  opacity: 0;
+}
+
 .shop-list__footer {
   text-align: center;
 }
@@ -197,7 +214,17 @@ button {
   align-items: center;
   background-color: var(--color-blue);
   border-radius: 0 0 8px 8px;
-  padding: 6px 0;
-  font-size: 28px;
+  padding: 8px 0;
+  font-size: var(--icon-large-size);
   color: var(--color-white);
+}
+
+.btn__icon {
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.shop-list__btn:hover .btn__icon {
+  transform: translateY(1px);
+  color: var(--color-dark-blue);
 }

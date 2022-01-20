@@ -37,6 +37,10 @@ function addItemList() {
   let totalPrice = document.querySelector('.shop-list__total-price');
   totalPrice.classList.add('show');
 
+  // 안내 문구 비표시
+  const guidance = document.querySelector('.shop-list__guidance');
+  guidance.classList.add('hidden');
+
   // 총 금액을 누적하여 더함
   totalPrice = document.querySelector('.shop-list__total-price > span');
   totalPrice.textContent = `${Number(totalPrice.textContent) + Number(priceValue)}`;
@@ -78,11 +82,15 @@ function createListElem(item, price) {
 
     // 아이템이 모두 삭제된 경우
     if (!ul.childElementCount) {
-      // 총 금액란을 표시하지 않는다
+      // 총 금액란 비표시
       const items = document.querySelector('.shop-list__items');
       items.classList.remove('border');
       const totalPrice = document.querySelector('.shop-list__total-price');
       totalPrice.classList.remove('show');
+
+      // 안내 문구 표시
+      const guidance = document.querySelector('.shop-list__guidance');
+      guidance.classList.remove('hidden');
     }
   })
 }
