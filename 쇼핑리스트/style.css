@@ -123,7 +123,7 @@ button {
 }
 
 .shop-list__items {
-  border-bottom: 1px solid var(--color-grey);
+
 }
 
 .shop-list__item {
@@ -167,6 +167,10 @@ button {
 
 .item__icon--remove {
   color: var(--color-red);
+}
+
+.shop-list__total-price {
+  visibility: hidden;
 }
 
 .shop-list__footer {
