@@ -82,9 +82,6 @@ body {
   margin: 0;
   background-color: var(--color-light-green);
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Initialization */
@@ -107,14 +104,18 @@ button {
 /* shop-list 영역 */
 .shop-list {
   background-color: var(--color-light-yellow);
-  margin: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
+  min-width: 300px;
   max-width: 500px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
 }
 
 .shop-list__header {
   background-color: var(--color-blue);
-  border-radius: 8px 8px 0 0;
   padding: 6px;
   text-align: center;
 }
@@ -135,7 +136,8 @@ button {
   position: relative;
   padding: 10px 20px;
   text-align: right;
-  min-height: 300px;
+  height: 350px;
+  overflow-y: auto;
 }
 
 .item__name {
@@ -205,6 +207,7 @@ button {
   width: 49%;
   background-color: transparent;
   font-size: var(--font-small);
+  vertical-align: middle;
 }
 
 .shop-list__btn {
@@ -213,7 +216,6 @@ button {
   justify-content: center;
   align-items: center;
   background-color: var(--color-blue);
-  border-radius: 0 0 8px 8px;
   padding: 8px 0;
   font-size: var(--icon-large-size);
   color: var(--color-white);

@@ -8,25 +8,29 @@ date.textContent = today.replace(/-/g, '. '); // 예) 2020. 07. 24
 const inputItem = document.querySelector('.shop-list__input--item');
 const inputPrice = document.querySelector('.shop-list__input--price');
 const btn = document.querySelector('.shop-list__btn');
+const ul = document.querySelector('.shop-list__items');
 
-btn.addEventListener('click', addItemList);
+btn.addEventListener('click', onAddItemList);
 inputPrice.addEventListener('keyup', e => {
   let key = e.key || e.keyCode;
   if (key === 'Enter' || key === 13) {
-    return addItemList();
+    return onAddItemList();
   }
 })
 
-function addItemList() {
+function onAddItemList() {
   const itemValue = inputItem.value;
   const priceValue = inputPrice.value.replace(/[^0-9]/g, ''); // 숫자만 입력
-
+  
   // input 텍스트 초기화
   inputItem.value = '';
   inputPrice.value = '';
+  inputItem.focus();
 
   // 입력받은 값이 공백인 경우
-  if (itemValue === '' || priceValue === '') return;
+  if (itemValue === '' || priceValue === '') {
+    return;
+  }
 
   // 아이템 리스트를 element로 만든다
   createListElem(itemValue, priceValue);
@@ -63,8 +67,9 @@ function createListElem(item, price) {
   // element를 연결
   n.li.appendChild(n.itemName); n.li.appendChild(n.itemPrice);
   n.li.appendChild(n.iconCheck); n.li.appendChild(n.iconRemove);
-  const ul = document.querySelector('.shop-list__items');
   ul.appendChild(n.li);
+
+  n.li.scrollIntoView({behavior: 'smooth', block: 'center'});
 
   // ---------- 함수 분할 필요 ---------------
 
