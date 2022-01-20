@@ -4,66 +4,92 @@ const date = document.querySelector('.shop-list__date');
 date.setAttribute('datetime', today);
 date.textContent = today.replace(/-/g, '. '); // 예) 2020. 07. 24
 
-// check 아이콘
-// const checks = [...document.querySelectorAll('.item__icon--check')];
-// checks.forEach(check => {
-//   const itemName = check.parentNode.firstElementChild;
-//   check.addEventListener('click', () => {
-//     itemName.classList.toggle('checked');
-//     check.classList.toggle('checked');
-//   })
-// })
-
-// 리스트 추가
-const itemInput = document.querySelector('.shop-list__input--item');
-const priceInput = document.querySelector('.shop-list__input--price');
+// 아이템 리스트 추가
+const inputItem = document.querySelector('.shop-list__input--item');
+const inputPrice = document.querySelector('.shop-list__input--price');
 const btn = document.querySelector('.shop-list__btn');
 
-btn.addEventListener('click', () => {
-  const itemValue = itemInput.value;
-  const priceValue = priceInput.value;
-
-  // 값이 공백인 경우
-  if (itemValue === '' || priceValue === '') return;
-
-  // 리스트로 추가
-  addList(itemValue, priceValue);
-
-  // 초기화
-  itemInput.value = '';
-  priceInput.value = '';
-
-  const items = document.querySelector('.shop-list__items');
-  items.style.borderBottom = '1px solid var(--color-grey)';
-
-  const totalPrice = document.querySelector('.shop-list__total-price');
-  totalPrice.style.visibility = 'visible';
+btn.addEventListener('click', addItemList);
+inputPrice.addEventListener('keyup', e => {
+  let key = e.key || e.keyCode;
+  if (key === 'Enter' || key === 13) {
+    return addItemList();
+  }
 })
 
-function addList(item, price) {
-  // 노드 생성
-  const li = document.createElement('li');
-  li.setAttribute('class', 'shop-list__item');
-  const itemName = document.createElement('span');
-  itemName.setAttribute('class', 'item__name');
-  itemName.textContent = item;
-  const itemPrice = document.createElement('span');
-  itemPrice.setAttribute('class', 'item__price');
-  itemPrice.textContent = `${price}원`;
-  const iconCheck = document.createElement('i');
-  iconCheck.setAttribute('class', 'item__icon item__icon--check far fa-check-circle');
-  const iconRemove = document.createElement('i');
-  iconRemove.setAttribute('class', 'item__icon item__icon--remove far fa-trash-alt');
+function addItemList() {
+  const itemValue = inputItem.value;
+  const priceValue = inputPrice.value.replace(/[^0-9]/g, ''); // 숫자만 입력
 
-  // 노드 연결
-  li.appendChild(itemName);
-  li.appendChild(itemPrice);
-  li.appendChild(iconCheck);
-  li.appendChild(iconRemove);
+  // input 텍스트 초기화
+  inputItem.value = '';
+  inputPrice.value = '';
 
-  const ul = document.querySelector('.shop-list__items');
-  ul.appendChild(li);
+  // 입력받은 값이 공백인 경우
+  if (itemValue === '' || priceValue === '') return;
+
+  // 아이템 리스트를 element로 만든다
+  createListElem(itemValue, priceValue);
+
+  // 총 금액란 표시
+  const items = document.querySelector('.shop-list__items');
+  items.classList.add('border');
+  let totalPrice = document.querySelector('.shop-list__total-price');
+  totalPrice.classList.add('show');
+
+  // 총 금액을 누적하여 더함
+  totalPrice = document.querySelector('.shop-list__total-price > span');
+  totalPrice.textContent = `${Number(totalPrice.textContent) + Number(priceValue)}`;
 }
 
+function createListElem(item, price) {
+  const n = {};
 
-// 리스트 삭제
+  // element를 생성하고 className을 추가
+  n.li = createElemAndClass('li', 'shop-list__item');
+  n.itemName = createElemAndClass('span', 'item__name');
+  n.itemPrice = createElemAndClass('span', 'item__price');
+  n.iconCheck = createElemAndClass('i', 'item__icon item__icon--check far fa-check-circle')
+  n.iconRemove = createElemAndClass('i', 'item__icon item__icon--remove far fa-trash-alt');
+
+  // 입력받은 item, price를 삽입
+  n.itemName.textContent = item;
+  n.itemPrice.textContent = `${price}원`;
+
+  // element를 연결
+  n.li.appendChild(n.itemName); n.li.appendChild(n.itemPrice);
+  n.li.appendChild(n.iconCheck); n.li.appendChild(n.iconRemove);
+  const ul = document.querySelector('.shop-list__items');
+  ul.appendChild(n.li);
+
+  // ---------- 함수 분할 필요 ---------------
+
+  // click 아이콘 이벤트 설정
+  n.iconCheck.addEventListener('click', () => {
+    n.itemName.classList.toggle('checked');
+    n.iconCheck.classList.toggle('checked');
+  })
+
+  // remove 아이콘 이벤트 설정
+  const totalPrice = document.querySelector('.shop-list__total-price span');
+  n.iconRemove.addEventListener('click', () => {
+    ul.removeChild(n.li);
+    totalPrice.textContent = `${Number(totalPrice.textContent) - Number(price)}`;
+
+    // 아이템이 모두 삭제된 경우
+    if (!ul.childElementCount) {
+      // 총 금액란을 표시하지 않는다
+      const items = document.querySelector('.shop-list__items');
+      items.classList.remove('border');
+      const totalPrice = document.querySelector('.shop-list__total-price');
+      totalPrice.classList.remove('show');
+    }
+  })
+}
+
+// element를 생성하고 className을 추가
+function createElemAndClass(tagName, className) {
+  const elem = document.createElement(tagName);
+  elem.setAttribute('class', className);
+  return elem;
+}

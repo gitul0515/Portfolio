@@ -122,8 +122,8 @@ button {
   margin-bottom: 6px;
 }
 
-.shop-list__items {
-
+.shop-list__items.border {
+  border-bottom: 1px solid var(--color-grey);
 }
 
 .shop-list__item {
@@ -153,8 +153,8 @@ button {
   transition: 0.3s;
 }
 
-.item__icon:hover {
-  transform: rotate(15deg);
+.item__icon:hover, .item__icon:active {
+  transform: rotate(20deg);
 }
 
 .item__icon--check {
@@ -171,6 +171,10 @@ button {
 
 .shop-list__total-price {
   visibility: hidden;
+}
+
+.shop-list__total-price.show {
+  visibility: visible;
 }
 
 .shop-list__footer {
