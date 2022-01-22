@@ -11,16 +11,17 @@ const btn = document.querySelector('.shop-list__btn');
 const items = document.querySelector('.shop-list__items');
 const totalPrice = document.querySelector('.shop-list__total-price');
 const totalPriceSpan = document.querySelector('.shop-list__total-price > span');
+const checkAll = document.querySelector('.shop-list__check-all');
 const guidance = document.querySelector('.shop-list__guidance');
 
-btn.addEventListener('click', onAddData);
+btn.addEventListener('click', onAdd);
 inputPrice.addEventListener('keyup', e => {
-  e.key === 'Enter' && onAddData();
+  e.key === 'Enter' && onAdd();
 })
 
-function onAddData() {
+function onAdd() {
   const itemValue = inputItem.value;
-  const priceValue = inputPrice.value.replace(/[^0-9]/g, ''); // 숫자만 입력
+  const priceValue = inputPrice.value.replace(/[^0-9]/g, ''); // 숫자가 아닌 문자는 삭제
   
   // input 텍스트 초기화
   inputItem.value = '';
@@ -39,10 +40,12 @@ function onAddData() {
   items.classList.add('border');
   totalPrice.classList.add('show');
 
+  checkAll.classList.add('show');
+
   // 안내 문구 비표시
   guidance.classList.add('hidden');
 
-  // 총 금액을 누적하여 더함
+  // 총 금액을 계산하여 표시한다
   totalPriceSpan.textContent = `${Number(totalPriceSpan.textContent) + Number(priceValue)}`;
 }
 
@@ -91,7 +94,7 @@ function onIconCheck(n) {
   n.iconCheck.classList.toggle('checked');
 }
 
-// iconRemove 이벤트 설정
+// iconRemove 이벤트 함수
 function onIconRemove(n, price) {
   items.removeChild(n.li);
   totalPriceSpan.textContent = `${Number(totalPriceSpan.textContent) - Number(price)}`;
@@ -102,7 +105,18 @@ function onIconRemove(n, price) {
     items.classList.remove('border');
     totalPrice.classList.remove('show');
 
+    checkAll.classList.remove('show');
+
     // 안내 문구 표시
     guidance.classList.remove('hidden');
   }
 }
+
+// checkAll 이벤트 설정
+checkAll.addEventListener('click', () => {
+  const itemNames = [...document.querySelectorAll('.item__name')];
+  const iconChecks = [...document.querySelectorAll('.item__icon.item__icon--check.far.fa-check-circle')];
+
+  itemNames.forEach(itemName => itemName.classList.add('checked'));
+  iconChecks.forEach(iconCheck => iconCheck.classList.add('checked'));
+});
