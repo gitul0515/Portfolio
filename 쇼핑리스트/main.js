@@ -15,10 +15,7 @@ const guidance = document.querySelector('.shop-list__guidance');
 
 btn.addEventListener('click', onAddData);
 inputPrice.addEventListener('keyup', e => {
-  let key = e.key || e.keyCode;
-  if (key === 'Enter' || key === 13) {
-    return onAddData();
-  }
+  e.key === 'Enter' && onAddData();
 })
 
 function onAddData() {
@@ -103,7 +100,7 @@ function onIconRemove(n, price) {
   if (!items.childElementCount) {
     // 총 금액란 비표시
     items.classList.remove('border');
-    totalPriceSpan.classList.remove('show');
+    totalPrice.classList.remove('show');
 
     // 안내 문구 표시
     guidance.classList.remove('hidden');
