@@ -23,7 +23,7 @@
   --font-medium: 24px;
   --font-regular: 18px;
   --font-small: 16px;
-  --font-micro: 14px;
+  --font-micro: 12px;
 
   /* Font weight */
   --weight-bold: 700;
@@ -181,17 +181,17 @@ button {
   visibility: visible;
 }
 
-.shop-list__check-all {
+.shop-list__check-all, .shop-list__delete-all {
   border: 1px solid var(--color-light-grey);
   background-color: var(--color-light-white);
   padding: 4px;
   margin-top: 2px;
-  font-size: var(--font-small);
+  font-size: var(--font-micro);
   cursor: pointer;
   visibility: hidden;
 }
 
-.shop-list__check-all.show {
+.shop-list__check-all.show, .shop-list__delete-all.show {
   visibility: visible;
 }
 

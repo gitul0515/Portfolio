@@ -11,6 +11,7 @@ const items = document.querySelector('.shop-list__items');
 const totalPrice = document.querySelector('.shop-list__total-price');
 const totalPriceSpan = document.querySelector('.shop-list__total-price > span');
 const checkAll = document.querySelector('.shop-list__check-all');
+const deleteAll = document.querySelector('.shop-list__delete-all');
 const guidance = document.querySelector('.shop-list__guidance');
 const form = document.querySelector('.shop-list_form');
 
@@ -41,6 +42,7 @@ function onAdd() {
   totalPrice.classList.add('show');
 
   checkAll.classList.add('show');
+  deleteAll.classList.add('show');
 
   // 안내 문구 비표시
   guidance.classList.add('hidden');
@@ -106,19 +108,29 @@ function onIconRemove(n, price) {
     totalPrice.classList.remove('show');
 
     checkAll.classList.remove('show');
+    deleteAll.classList.remove('show');
 
     // 안내 문구 표시
     guidance.classList.remove('hidden');
   }
 }
 
-// checkAll 이벤트 설정
+// checkAll 이벤트
 checkAll.addEventListener('click', () => {
   // checked 되지 않은 iconCheck를 구한다
   let iconChecks = [...document.querySelectorAll('.item__icon.item__icon--check.far.fa-check-circle')];
   iconChecks = iconChecks.filter(icon => !icon.classList.contains('checked'));
 
   iconChecks.forEach(icon => {
+    icon.dispatchEvent(new Event('click'));
+  });
+});
+
+// deleteAll 이벤트
+deleteAll.addEventListener('click', () => {
+  const iconRemove = [...document.querySelectorAll('.item__icon.item__icon--remove.far.fa-trash-alt')];
+
+  iconRemove.forEach(icon => {
     icon.dispatchEvent(new Event('click'));
   });
 });
