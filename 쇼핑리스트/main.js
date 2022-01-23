@@ -59,7 +59,7 @@ function createListElem(item, price) {
   n.itemName = createNodeAndClass('span', 'item__name');
   n.itemPrice = createNodeAndClass('span', 'item__price');
   n.iconCheck = createNodeAndClass('i', 'item__icon item__icon--check far fa-check-circle')
-  n.iconRemove = createNodeAndClass('i', 'item__icon item__icon--remove far fa-trash-alt');
+  n.iconDelete = createNodeAndClass('i', 'item__icon item__icon--delete far fa-trash-alt');
 
   // 입력된 값을 표시
   n.itemName.textContent = item;
@@ -67,7 +67,7 @@ function createListElem(item, price) {
 
   // Node 연결
   n.li.appendChild(n.itemName); n.li.appendChild(n.itemPrice);
-  n.li.appendChild(n.iconCheck); n.li.appendChild(n.iconRemove);
+  n.li.appendChild(n.iconCheck); n.li.appendChild(n.iconDelete);
   items.appendChild(n.li);
 
   n.li.scrollIntoView({behavior: 'smooth', block: 'center'});
@@ -77,9 +77,9 @@ function createListElem(item, price) {
     onIconCheck(n);
   });
 
-  // iconRemove 이벤트 설정
-  n.iconRemove.addEventListener('click', () => {
-    onIconRemove(n, price);
+  // iconDelete 이벤트 설정
+  n.iconDelete.addEventListener('click', () => {
+    onIconDelete(n, price);
   })
 }
 
@@ -96,8 +96,8 @@ function onIconCheck(n) {
   n.iconCheck.classList.toggle('checked');
 }
 
-// iconRemove 이벤트 함수
-function onIconRemove(n, price) {
+// iconDelete 이벤트 함수
+function onIconDelete(n, price) {
   items.removeChild(n.li);
   totalPriceSpan.textContent = `${Number(totalPriceSpan.textContent) - Number(price)}`;
 
@@ -128,9 +128,9 @@ checkAll.addEventListener('click', () => {
 
 // deleteAll 이벤트
 deleteAll.addEventListener('click', () => {
-  const iconRemove = [...document.querySelectorAll('.item__icon.item__icon--remove.far.fa-trash-alt')];
+  const iconDelete = [...document.querySelectorAll('.item__icon.item__icon--delete.far.fa-trash-alt')];
 
-  iconRemove.forEach(icon => {
+  iconDelete.forEach(icon => {
     icon.dispatchEvent(new Event('click'));
   });
 });

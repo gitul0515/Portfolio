@@ -169,7 +169,7 @@ button {
   color: var(--color-green);
 }
 
-.item__icon--remove {
+.item__icon--delete {
   color: var(--color-red);
 }
 
