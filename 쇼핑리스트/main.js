@@ -7,17 +7,17 @@ date.textContent = today.replace(/-/g, '. '); // 예) 2020. 07. 24
 // 아이템 리스트 추가
 const inputItem = document.querySelector('.shop-list__input--item');
 const inputPrice = document.querySelector('.shop-list__input--price');
-const btn = document.querySelector('.shop-list__btn');
 const items = document.querySelector('.shop-list__items');
 const totalPrice = document.querySelector('.shop-list__total-price');
 const totalPriceSpan = document.querySelector('.shop-list__total-price > span');
 const checkAll = document.querySelector('.shop-list__check-all');
 const guidance = document.querySelector('.shop-list__guidance');
+const form = document.querySelector('.shop-list_form');
 
-btn.addEventListener('click', onAdd);
-inputPrice.addEventListener('keyup', e => {
-  e.key === 'Enter' && onAdd();
-})
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  onAdd();
+});
 
 function onAdd() {
   const itemValue = inputItem.value;
