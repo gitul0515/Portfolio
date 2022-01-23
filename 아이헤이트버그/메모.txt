@@ -1,0 +1,66 @@
+
+
+
+
+
+
+
+
+유닛 움직이게 하기
+
+- main의 getboundingRect에서 top, left, right, bottom을 구하고,
+  그 값을 넘어서면 방향을 바꾼다. 
+
+- resize 이벤트가 발생하면 top, left, right, bottom을 다시 구한다.
+
+
+
+status--title
+
+status--stage-clear
+
+status--game-over
+
+status--game-clear
+
+
+
+이미지를 배경이 아니라 img로 적용한 뒤, 
+
+img의 크기를 조절한다. 
+
+main은 크기와 관련된 어떤 속성도 적용하지 않는다. 
+
+
+
+title
+
+
+
+
+
+
+
+대기
+
+
+시작하기 이전단계 
+
+
+
+state
+phase
+
+상태화면 
+
+
+게임의 현재 진행 상태를 나타내고 
+
+결과를 표시한다. 
+
+스테이지의 중간 단계 
+
+사이에 있는 것 
+
+결과화면 
+
