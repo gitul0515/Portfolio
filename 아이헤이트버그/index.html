@@ -23,7 +23,24 @@
   </head>
   <body>
     <div class="main">
-      <div class="status status--initial">
+      <header class="header">
+        <div class="header__stage">Stage 1</div>
+        <div class="header__lives">
+          <i class="header__life fas fa-heart"></i>
+          <i class="header__life fas fa-heart"></i>
+          <i class="header__life fas fa-heart"></i>
+        <div/>
+        <button class="header__btn header__btn--pause">
+          <i class="fas fa-pause"></i>
+        </button>
+        <button class="header__btn header__btn--exit">
+          <i class="fas fa-door-open"></i>
+        </button>
+        <div class="header__time">0:05</div>
+      </header>
+
+
+      <div class="status status--initial show">
         <img class="status__main-title" src="./img/title.png" alt="타이틀 이미지">
         <img class="status__sub-title" src="./img/bug1.png" alt="벌레 이미지1">
         <button class="status__btn">Start Game</button>
