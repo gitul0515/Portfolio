@@ -114,9 +114,11 @@ function onIconRemove(n, price) {
 
 // checkAll 이벤트 설정
 checkAll.addEventListener('click', () => {
-  const itemNames = [...document.querySelectorAll('.item__name')];
-  const iconChecks = [...document.querySelectorAll('.item__icon.item__icon--check.far.fa-check-circle')];
+  // checked 되지 않은 iconCheck를 구한다
+  let iconChecks = [...document.querySelectorAll('.item__icon.item__icon--check.far.fa-check-circle')];
+  iconChecks = iconChecks.filter(icon => !icon.classList.contains('checked'));
 
-  itemNames.forEach(itemName => itemName.classList.add('checked'));
-  iconChecks.forEach(iconCheck => iconCheck.classList.add('checked'));
+  iconChecks.forEach(icon => {
+    icon.dispatchEvent(new Event('click'));
+  });
 });
