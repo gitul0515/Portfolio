@@ -133,6 +133,11 @@ button {
 .header__btns {
   position: absolute;
   right: 10px;
+  display: flex;
+}
+
+.fa-pause {
+  font-size: 23px;
 }
 
 .header__stage {
@@ -175,11 +180,15 @@ button {
 
 .header__btn {
   background-color: var(--color-lighter-brown);
+  border: 2px solid var(--color-black);
+  border-radius: 10px;
   font-size: var(--icon-small-size);
   width: 45px;
   height: 45px;
-  border: 2px solid var(--color-black);
-  border-radius: 10px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__btn--pause {
