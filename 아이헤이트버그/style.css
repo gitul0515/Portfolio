@@ -25,7 +25,7 @@
 
   /* Font size */
   --font-large: 48px;
-  --font-medium: 32px;
+  --font-medium: 28px;
   --font-regular: 24px;
   --font-small: 18px;
   --font-micro: 12px;
@@ -40,8 +40,8 @@
 
   /* Size */
   --border-radius-size: 8px;
-  --icon-large-size: 30px;
-  --icon-small-size: 20px;
+  --icon-large-size: 28px;
+  --icon-small-size: 22px;
 
   /* Animation */
   --animation-duration: 0.3s
@@ -119,6 +119,78 @@ button {
   background-size: contain;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.header__state {
+  position: relative;
+}
+
+.header__btns {
+  position: absolute;
+  right: 10px;
+}
+
+.header__stage {
+  background-color: var(--color-light-brown);
+  font-size: var(--font-medium);
+  font-weight: bold;
+  padding: 0 10px;
+  height: 45px;
+  border: 2px solid var(--color-black);
+  border-radius: 10px;
+}
+
+.header__time-and-lives {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-regular);
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.header__time, .header__lives {
+  width: 8vw;
+  background-color: var(--color-lighter-brown);
+  border: 2px solid var(--color-black);
+  border-radius: 10px;
+  text-align: center;
+  padding: 2px;
+}
+
+.header__time {
+  margin-right: 5px;
+}
+
+.header__lives {
+  margin-left: 5px;
+  color: red;
+}
+
+.header__btn {
+  background-color: var(--color-lighter-brown);
+  font-size: var(--icon-small-size);
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--color-black);
+  border-radius: 10px;
+}
+
+.header__btn--pause {
+  color: var(--color-brown);
+}
+
+.header__btn--exit {
+  color: var(--color-black);
+}
+
+/* status 영역 */
 .status {
   position: absolute;
   top: 0;
@@ -153,6 +225,10 @@ button {
 
 .status__btn {
   color: var(--color-white);
-  font-size: 2.5vw;
+  font-size: var(--font-small);
   margin-top: 10px;
+}
+
+@media screen and(max-width: 768) {
+  
 }
