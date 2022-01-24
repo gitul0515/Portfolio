@@ -4,7 +4,7 @@ const btnPause = document.querySelector('.header__btn--pause');
 const btnPauseIcon = document.querySelector('.header__btn--pause i');
 
 let intervalID = setInterval(() => {
-  timeNode.textContent = `0:${String(30 - (++time))}`;
+  timeNode.textContent = String(30 - (++time));
 }, 1000);
 
 btnPause.addEventListener('click', () => {
@@ -13,7 +13,7 @@ btnPause.addEventListener('click', () => {
     btnPauseIcon.className = 'fas fa-play';
   } else {
     intervalID = setInterval(() => {
-      timeNode.textContent = `0:${String(30 - (++time))}`;
+      timeNode.textContent = String(30 - (++time));
     }, 1000);
     btnPauseIcon.className = 'fas fa-pause';
   }

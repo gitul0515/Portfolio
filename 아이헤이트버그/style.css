@@ -79,6 +79,11 @@ p {
 /* Universal tags */
 * {
   box-sizing: border-box;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -197,6 +202,17 @@ button {
 
 .header__btn--exit {
   color: var(--color-black);
+}
+
+/* Bug & File 영역 */
+.bug__img {
+  position: absolute;
+  width: 9vw;
+}
+
+.file__img {
+  /* position: absolute; */
+  width: 6vw;
 }
 
 /* status 영역 */
