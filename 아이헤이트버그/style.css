@@ -124,21 +124,28 @@ button {
   background-size: contain;
 }
 
+/* header 영역 */
 .header {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
 }
 
+.header.show {
+  display: flex;
+}
+
 .header__state {
   position: relative;
+  z-index: 999;
 }
 
 .header__btns {
   position: absolute;
   right: 10px;
   display: flex;
+  z-index: 999;
 }
 
 .fa-pause {
@@ -204,15 +211,31 @@ button {
   color: var(--color-black);
 }
 
-/* Bug & File 영역 */
-.bug__img {
+/* content 영역 */
+.content {
+  display: none;
+  border: 1px solid red;
   position: absolute;
-  width: 9vw;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content.show {
+  display: block;
+}
+
+.bug__img {
+  /* position: absolute; */
+  width: 7vw;
+  cursor: pointer;
 }
 
 .file__img {
   /* position: absolute; */
-  width: 6vw;
+  width: 5vw;
+  cursor: pointer;
 }
 
 /* status 영역 */
@@ -245,13 +268,22 @@ button {
 
 .status__sub-title {
   width: 10%;
+  transition: 1s;
+}
 
+.status__sub-title:hover {
+  transform: rotate(180deg);
 }
 
 .status__btn {
   color: var(--color-white);
-  font-size: var(--font-small);
+  font-size: var(--font-medium);
   margin-top: 10px;
+  transition: 0.3s;
+}
+
+.status__btn:hover {
+  transform: scale(1.1) translateY(2px);
 }
 
 @media screen and(max-width: 768) {
