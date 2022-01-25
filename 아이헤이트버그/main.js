@@ -31,15 +31,15 @@ btnPause.addEventListener('click', () => {
 
 const header = document.querySelector('.header');
 const content = document.querySelector('.content');
-const status = document.querySelector('.status');
+const overlay = document.querySelector('.overlay');
 const bugs = document.querySelectorAll('.bug__img');
 const files = document.querySelectorAll('.file__img');
 
-const statusBtn = document.querySelector('.status__btn');
-statusBtn.addEventListener('click', () => {
+const overlayBtn = document.querySelector('.overlay__btn');
+overlayBtn.addEventListener('click', () => {
   header.classList.add('show');
   content.classList.add('show');
-  status.classList.remove('show');
+  overlay.classList.remove('show');
 
   bugs.forEach(bug => {
     // 10 ~ 80의 난수 생성

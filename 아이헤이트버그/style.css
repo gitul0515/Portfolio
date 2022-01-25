@@ -264,8 +264,8 @@ button {
   transform: scale(0.5);
 }
 
-/* status 영역 */
-.status {
+/* overlay screen 영역 */
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -279,36 +279,36 @@ button {
   display: none;
 }
 
-.status.show {
+.overlay.show {
   display: flex;
 }
 
-.status--initial {
+.overlay--initial {
 
 }
 
-.status__main-title {
+.overlay__main-title {
   width: 65%;
   margin-top: 50px;
 }
 
-.status__sub-title {
+.overlay__sub-title {
   width: 10%;
   transition: 1s;
 }
 
-.status__sub-title:hover {
+.overlay__sub-title:hover {
   transform: rotate(180deg);
 }
 
-.status__btn {
+.overlay__btn {
   color: var(--color-white);
   font-size: var(--font-medium);
   margin-top: 10px;
   transition: 0.3s;
 }
 
-.status__btn:hover {
+.overlay__btn:hover {
   transform: scale(1.1) translateY(2px);
 }
 
