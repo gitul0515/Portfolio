@@ -2,48 +2,23 @@
 const stageSetting = {
   1 : {
     bugNum: 4,
-    time: 50
+    time: 7
   },
   2 : {
     bugNum: 4,
-    time: 45
+    time: 6
   },
   3 : {
     bugNum: 4,
-    time: 40
+    time: 5
   }
 }
 let curStage = 1;
 
 // 남은 시간
-let time = 30;
+let time;
+let intervalID;
 const timeNode = document.querySelector('.header__time');
-
-// 남은 시간이 1초마다 감소
-let intervalID = setInterval(() => {
-  timeNode.textContent = String(--time);
-}, 1000);
-
-// btnPause 이벤트 설정
-const btnPause = document.querySelector('.header__btn--pause');
-const btnPauseIcon = document.querySelector('.header__btn--pause i');
-btnPause.addEventListener('click', () => {
-  if (btnPauseIcon.className === 'fas fa-pause') {
-    clearInterval(intervalID);
-    btnPauseIcon.className = 'fas fa-play';
-  } else {
-    intervalID = setInterval(() => {
-      timeNode.textContent = String(--time);
-    }, 1000);
-    btnPauseIcon.className = 'fas fa-pause';
-  }
-});
-/*
-  btnPauseIcon이 'fas fa-pause'인 경우, 
-  시간을 중지하고 icon을 'fas fa-play'로 변경한다.
-  btnPauseIcon이 'fas fa-play'인 경우,
-  시간을 흐르게하고 icon을 'fas fa-pause'로 변경한다.
-*/
 
 // overlayBtn 이벤트 설정
 const overlay = document.querySelector('.overlay');
@@ -60,9 +35,20 @@ overlayBtn.addEventListener('click', () => {
 
   createBugs();
   createFiles();
+  
+  time = stageSetting[curStage].time;
+  timeNode.textContent = `${time}`;
+  
+  // 남은 시간을 1초마다 감소
+  intervalID = setInterval(() => {
+  timeNode.textContent = `${--time}`;
+  if (!time) {
+    gameOver();
+  }
+}, 1000);
 });
 
-// bugs를 생성하고 랜덤으로 배치한다
+// bugs를 생성하고 랜덤하게 배치
 function createBugs() {
   bugs.forEach(bug => {
     bug.classList.remove('hidden');
@@ -75,7 +61,7 @@ function createBugs() {
   });
 }
 
-// files를 생성하고 랜덤으로 배치한다
+// files를 생성하고 랜덤하게 배치
 function createFiles() {
   files.forEach(file => {
     file.classList.remove('hidden');
@@ -97,23 +83,63 @@ bugs.forEach(bug => {
     bug.classList.add('hidden');
     stageSetting[curStage].bugNum--;
     if (!stageSetting[curStage].bugNum) {
+      clearInterval(intervalID);
+
       header.classList.remove('show');
       content.classList.remove('show');
       overlay.classList.add('show');
 
       overlayMain.setAttribute('src', './img/title_clear.png')
-      overlayBtn.textContent = 'Next Stage';
       if (curStage === 1) {
         overlaySub.setAttribute('src', './img/bug2.png');
       } else if (curStage === 2) {
         overlaySub.setAttribute('src', './img/bug3.png');
       }
+      overlayBtn.textContent = 'Next Stage';
       curStage++;
     }
   });
 });
+
 files.forEach(file => {
   file.addEventListener('click', () => {
     file.classList.add('hidden');
   });
 });
+
+// btnPause 이벤트 설정
+const btnPause = document.querySelector('.header__btn--pause');
+const btnPauseIcon = document.querySelector('.header__btn--pause i');
+btnPause.addEventListener('click', () => {
+  if (btnPauseIcon.className === 'fas fa-pause') {
+    clearInterval(intervalID);
+    btnPauseIcon.className = 'fas fa-play';
+  } else {
+    intervalID = setInterval(() => {
+      timeNode.textContent = `${--time}`;
+      if (!time) {
+        gameOver();
+      }
+    }, 1000);
+    btnPauseIcon.className = 'fas fa-pause';
+  }
+});
+/*
+  btnPauseIcon이 'fas fa-pause'인 경우, 
+  시간을 중지하고 icon을 'fas fa-play'로 변경한다.
+  btnPauseIcon이 'fas fa-play'인 경우,
+  시간을 흐르게하고 icon을 'fas fa-pause'로 변경한다.
+*/
+
+function gameOver() {
+  header.classList.remove('show');
+  content.classList.remove('show');
+  overlay.classList.add('show');
+
+  overlayMain.setAttribute('src', './img/title_end.png')
+  overlaySub.setAttribute('src', './img/cry.png');
+  overlayBtn.textContent = 'Replay?';
+
+  clearInterval(intervalID);
+  curStage = 1;
+}
