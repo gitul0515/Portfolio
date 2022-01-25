@@ -1,10 +1,27 @@
+// 스테이지 설정
+const stageSetting = {
+  1 : {
+    bugNum: 4,
+    time: 50
+  },
+  2 : {
+    bugNum: 4,
+    time: 45
+  },
+  3 : {
+    bugNum: 4,
+    time: 40
+  }
+}
+let curStage = 1;
+
 // 남은 시간
-let time = 0;
+let time = 30;
 const timeNode = document.querySelector('.header__time');
 
 // 남은 시간이 1초마다 감소
 let intervalID = setInterval(() => {
-  timeNode.textContent = String(30 - (++time));
+  timeNode.textContent = String(--time);
 }, 1000);
 
 // btnPause 이벤트 설정
@@ -16,7 +33,7 @@ btnPause.addEventListener('click', () => {
     btnPauseIcon.className = 'fas fa-play';
   } else {
     intervalID = setInterval(() => {
-      timeNode.textContent = String(30 - (++time));
+      timeNode.textContent = String(--time);
     }, 1000);
     btnPauseIcon.className = 'fas fa-pause';
   }
@@ -41,29 +58,58 @@ overlayBtn.addEventListener('click', () => {
   content.classList.add('show');
   overlay.classList.remove('show');
 
-  // bugs를 화면에 랜덤으로 배치
+  createBugs();
+  createFiles();
+});
+
+// bugs를 생성하고 랜덤으로 배치한다
+function createBugs() {
   bugs.forEach(bug => {
+    bug.classList.remove('hidden');
+
     // 10 ~ 80의 난수 생성
     const bugRndX = Math.floor(Math.random() * 71) + 10;
     const bugRndY = Math.floor(Math.random() * 71) + 10;
     bug.style.left = `${bugRndX}%`;
     bug.style.top = `${bugRndY}%`;
   });
+}
 
-  // files를 화면에 랜덤으로 배치
+// files를 생성하고 랜덤으로 배치한다
+function createFiles() {
   files.forEach(file => {
+    file.classList.remove('hidden');
+
     // 10 ~ 80의 난수 생성
     const fileRndX = Math.floor(Math.random() * 71) + 10;
     const fileRndY = Math.floor(Math.random() * 71) + 10;
     file.style.left = `${fileRndX}%`;
     file.style.top = `${fileRndY}%`;
   });
-});
+}
 
 // bugs & files 이벤트 설정
+const overlayMain = document.querySelector('.overlay__main-title');
+const overlaySub = document.querySelector('.overlay__sub-title');
+
 bugs.forEach(bug => {
   bug.addEventListener('click', () => {
     bug.classList.add('hidden');
+    stageSetting[curStage].bugNum--;
+    if (!stageSetting[curStage].bugNum) {
+      header.classList.remove('show');
+      content.classList.remove('show');
+      overlay.classList.add('show');
+
+      overlayMain.setAttribute('src', './img/title_clear.png')
+      overlayBtn.textContent = 'Next Stage';
+      if (curStage === 1) {
+        overlaySub.setAttribute('src', './img/bug2.png');
+      } else if (curStage === 2) {
+        overlaySub.setAttribute('src', './img/bug3.png');
+      }
+      curStage++;
+    }
   });
 });
 files.forEach(file => {
