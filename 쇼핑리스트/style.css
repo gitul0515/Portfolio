@@ -5,12 +5,10 @@
   --color-light-white: #eeeeee;
   --color-dark-white: #bdbdbd;
   --color-red:#E03A3E;
-  --color-pink: #ff6863;
   --color-dark-grey: #4d4d4d;
   --color-grey: #616161;
   --color-light-grey: #7c7979;
   --color-yellow: #fff7d1;
-  --color-orange: #feb546;
   --color-black: #000000;
   --color-dark-blue: #2a7e7a;
   --color-blue: #45ADA8;
@@ -37,9 +35,6 @@
   --border-radius-size: 8px;
   --icon-large-size: 30px;
   --icon-small-size: 20px;
-
-  /* Animation */
-  --animation-duration: 0.3s
 }
 
 /* Typography */
