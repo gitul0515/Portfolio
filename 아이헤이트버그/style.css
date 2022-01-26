@@ -176,17 +176,26 @@ button {
   background-color: var(--color-lighter-brown);
   border: 2px solid var(--color-black);
   border-radius: 10px;
-  text-align: center;
   padding: 2px;
 }
 
 .header__time {
   margin-right: 5px;
+  text-align: center;
 }
 
 .header__lives {
   margin-left: 5px;
   color: red;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.header__life {
+}
+
+.header__life.hidden {
+  visibility: hidden;
 }
 
 .header__btn {

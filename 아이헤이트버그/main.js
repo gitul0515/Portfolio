@@ -1,16 +1,25 @@
+// Music 설정
+const musicBackgroud = new Audio('./sound/bgm.mp3');
+musicBackgroud.volume = 0.5;
+musicBackgroud.loop = true;
+const musicBug = new Audio('./sound/bug2.mp3');
+musicBug.volume = 0.7;
+const musicFile = new Audio('./sound/file.mp3');
+musicFile.volume = 0.7;
+
 // 스테이지 설정
 const stageSetting = {
   1 : {
     bugNum: 4,
-    time: 7
+    time: 50
   },
   2 : {
     bugNum: 4,
-    time: 6
+    time: 50
   },
   3 : {
     bugNum: 4,
-    time: 5
+    time: 50
   }
 }
 let curStage = 1;
@@ -24,18 +33,18 @@ const timeNode = document.querySelector('.header__time');
 const overlay = document.querySelector('.overlay');
 const overlayBtn = document.querySelector('.overlay__btn');
 const header = document.querySelector('.header');
+const headerStage = document.querySelector('.header__stage');
 const content = document.querySelector('.content');
 const bugs = document.querySelectorAll('.bug__img');
 const files = document.querySelectorAll('.file__img');
 
 overlayBtn.addEventListener('click', () => {
+  musicBackgroud.play();
   header.classList.add('show');
   content.classList.add('show');
-  overlay.classList.remove('show');
+  overlay.classList.remove('show');  
 
-  createBugs();
-  createFiles();
-  
+  headerStage.textContent = `Stage ${curStage}`;
   time = stageSetting[curStage].time;
   timeNode.textContent = `${time}`;
   
@@ -46,6 +55,9 @@ overlayBtn.addEventListener('click', () => {
     gameOver();
   }
 }, 1000);
+
+  createBugs();
+  createFiles();
 });
 
 // bugs를 생성하고 랜덤하게 배치
@@ -74,12 +86,15 @@ function createFiles() {
   });
 }
 
-// bugs & files 이벤트 설정
+// bugs 이벤트 설정
 const overlayMain = document.querySelector('.overlay__main-title');
 const overlaySub = document.querySelector('.overlay__sub-title');
 
 bugs.forEach(bug => {
   bug.addEventListener('click', () => {
+    musicBug.pause();
+    musicBug.currentTime = 0;
+    musicBug.play();
     bug.classList.add('hidden');
     stageSetting[curStage].bugNum--;
     if (!stageSetting[curStage].bugNum) {
@@ -89,21 +104,35 @@ bugs.forEach(bug => {
       content.classList.remove('show');
       overlay.classList.add('show');
 
-      overlayMain.setAttribute('src', './img/title_clear.png')
-      if (curStage === 1) {
-        overlaySub.setAttribute('src', './img/bug2.png');
-      } else if (curStage === 2) {
-        overlaySub.setAttribute('src', './img/bug3.png');
-      }
-      overlayBtn.textContent = 'Next Stage';
       curStage++;
+      if (curStage === 2) {
+        overlaySub.setAttribute('src', './img/bug2.png');
+      } else if (curStage === 3) {
+        overlaySub.setAttribute('src', './img/bug3.png');
+      } else if (curStage > 3) {
+        win();
+        return;
+      }
+      overlayMain.setAttribute('src', './img/title_clear.png')
+      overlayBtn.textContent = 'Next Stage';
     }
   });
 });
 
+// files 이벤트 설정
+const lives = [...document.querySelectorAll('.header__life')];
+let curLives = 3;
 files.forEach(file => {
   file.addEventListener('click', () => {
+    musicFile.pause();
+    musicFile.currentTime = 0;
+    musicFile.play();
     file.classList.add('hidden');
+    curLives--;
+    lives[curLives].classList.add('hidden');
+    if (!curLives) {
+      gameOver();
+    }
   });
 });
 
@@ -140,6 +169,15 @@ function gameOver() {
   overlaySub.setAttribute('src', './img/cry.png');
   overlayBtn.textContent = 'Replay?';
 
+  lives.forEach(life => {
+    life.classList.remove('hidden');
+  });
+
   clearInterval(intervalID);
   curStage = 1;
+  curLives = 3;
 }
+
+function win() {
+  overlayMain.setAttribute('src', './img/title_win.png');
+};
