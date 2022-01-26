@@ -133,9 +133,10 @@ button {
 
 .header.show {
   display: flex;
+  border: 1px solid blue;
 }
 
-.header__state {
+.header__status {
   position: relative;
   z-index: 999;
 }
@@ -221,12 +222,12 @@ button {
 
 /* content 영역 */
 .content {
-  display: none;
   position: absolute;
-  top: 0;
+  display: none;
+  top: 16%;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 84%;
 }
 
 .content.show {
@@ -255,7 +256,7 @@ button {
 
 .bug__img.hidden {
   visibility: hidden;
-  transform: scale(0.5);
+  transform: scale(0.5) rotate(360deg);
 }
 
 .file__img {

@@ -65,9 +65,9 @@ function createBugs() {
   bugs.forEach(bug => {
     bug.classList.remove('hidden');
 
-    // 10 ~ 80의 난수 생성
-    const bugRndX = Math.floor(Math.random() * 71) + 10;
-    const bugRndY = Math.floor(Math.random() * 71) + 10;
+    // 10 ~ 85의 난수 생성
+    const bugRndX = Math.floor(Math.random() * 76) + 10;
+    const bugRndY = Math.floor(Math.random() * 76) + 10;
     bug.style.left = `${bugRndX}%`;
     bug.style.top = `${bugRndY}%`;
   });
