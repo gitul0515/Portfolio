@@ -1,17 +1,15 @@
-// Music 설정
-const musicBackgroud = new Audio('./sound/bgm.mp3');
-musicBackgroud.volume = 0.5;
-musicBackgroud.loop = true;
-const musicBug = new Audio('./sound/bug2.mp3');
-musicBug.volume = 0.7;
-const musicFile = new Audio('./sound/file.mp3');
-musicFile.volume = 0.7;
+// 오디오
+const audioBgm = new Audio('./sound/bgm.mp3');
+const audioBug = new Audio('./sound/bug2.mp3');
+const audioFile = new Audio('./sound/file.mp3');
+audioSetting();
 
-// 스테이지 설정
+// 스테이지
+let stage = 1;
 const stageSetting = {
   1 : {
     bugNum: 4,
-    time: 50
+    time: 5
   },
   2 : {
     bugNum: 4,
@@ -22,42 +20,37 @@ const stageSetting = {
     time: 50
   }
 }
-let curStage = 1;
 
 // 남은 시간
 let time;
-let intervalID;
-const timeNode = document.querySelector('.header__time');
+let timeID;
+const timeBox = document.querySelector('.header__time');
 
 // overlayBtn 이벤트 설정
 const overlay = document.querySelector('.overlay');
 const overlayBtn = document.querySelector('.overlay__btn');
 const header = document.querySelector('.header');
-const headerStage = document.querySelector('.header__stage');
+const stageBox = document.querySelector('.header__stage');
 const content = document.querySelector('.content');
 const bugs = document.querySelectorAll('.bug__img');
 const files = document.querySelectorAll('.file__img');
 
 overlayBtn.addEventListener('click', () => {
-  musicBackgroud.play();
-  header.classList.add('show');
-  content.classList.add('show');
-  overlay.classList.remove('show');  
-
-  headerStage.textContent = `Stage ${curStage}`;
-  time = stageSetting[curStage].time;
-  timeNode.textContent = `${time}`;
+  stageBox.textContent = `Stage ${stage}`;
+  time = stageSetting[stage].time;
+  timeBox.textContent = `${time}`;
   
   // 남은 시간을 1초마다 감소
-  intervalID = setInterval(() => {
-  timeNode.textContent = `${--time}`;
+  timeID = setInterval(() => {
+    timeBox.textContent = `${--time}`;
   if (!time) {
     gameOver();
+    return;
   }
 }, 1000);
-
-  createBugs();
-  createFiles();
+  createBugs(); createFiles();
+  overlayHide();
+  audioBgm.play();
 });
 
 // bugs를 생성하고 랜덤하게 배치
@@ -65,9 +58,9 @@ function createBugs() {
   bugs.forEach(bug => {
     bug.classList.remove('hidden');
 
-    // 10 ~ 85의 난수 생성
-    const bugRndX = Math.floor(Math.random() * 76) + 10;
-    const bugRndY = Math.floor(Math.random() * 76) + 10;
+    // 0 ~ 85의 난수 생성
+    const bugRndX = Math.floor(Math.random() * 86);
+    const bugRndY = Math.floor(Math.random() * 86);
     bug.style.left = `${bugRndX}%`;
     bug.style.top = `${bugRndY}%`;
   });
@@ -78,9 +71,9 @@ function createFiles() {
   files.forEach(file => {
     file.classList.remove('hidden');
 
-    // 10 ~ 80의 난수 생성
-    const fileRndX = Math.floor(Math.random() * 71) + 10;
-    const fileRndY = Math.floor(Math.random() * 71) + 10;
+    // 0 ~ 85의 난수 생성
+    const fileRndX = Math.floor(Math.random() * 86);
+    const fileRndY = Math.floor(Math.random() * 86);
     file.style.left = `${fileRndX}%`;
     file.style.top = `${fileRndY}%`;
   });
@@ -92,24 +85,22 @@ const overlaySub = document.querySelector('.overlay__sub-title');
 
 bugs.forEach(bug => {
   bug.addEventListener('click', () => {
-    musicBug.pause();
-    musicBug.currentTime = 0;
-    musicBug.play();
+    audioBug.pause();
+    audioBug.currentTime = 0;
+    audioBug.play();
     bug.classList.add('hidden');
-    stageSetting[curStage].bugNum--;
-    if (!stageSetting[curStage].bugNum) {
-      clearInterval(intervalID);
+    stageSetting[stage].bugNum--;
+    if (!stageSetting[stage].bugNum) {
+      clearInterval(timeID);
 
-      header.classList.remove('show');
-      content.classList.remove('show');
-      overlay.classList.add('show');
+      overlayShow();
 
-      curStage++;
-      if (curStage === 2) {
+      stage++;
+      if (stage === 2) {
         overlaySub.setAttribute('src', './img/bug2.png');
-      } else if (curStage === 3) {
+      } else if (stage === 3) {
         overlaySub.setAttribute('src', './img/bug3.png');
-      } else if (curStage > 3) {
+      } else if (stage > 3) {
         win();
         return;
       }
@@ -120,17 +111,17 @@ bugs.forEach(bug => {
 });
 
 // files 이벤트 설정
-const lives = [...document.querySelectorAll('.header__life')];
-let curLives = 3;
+const hearts = [...document.querySelectorAll('.header__heart')];
+let heart = 3;
 files.forEach(file => {
   file.addEventListener('click', () => {
-    musicFile.pause();
-    musicFile.currentTime = 0;
-    musicFile.play();
+    audioFile.pause();
+    audioFile.currentTime = 0;
+    audioFile.play();
     file.classList.add('hidden');
-    curLives--;
-    lives[curLives].classList.add('hidden');
-    if (!curLives) {
+    heart--;
+    hearts[heart].classList.add('hidden');
+    if (!heart) {
       gameOver();
     }
   });
@@ -141,16 +132,18 @@ const btnPause = document.querySelector('.header__btn--pause');
 const btnPauseIcon = document.querySelector('.header__btn--pause i');
 btnPause.addEventListener('click', () => {
   if (btnPauseIcon.className === 'fas fa-pause') {
-    clearInterval(intervalID);
-    btnPauseIcon.className = 'fas fa-play';
+    clearInterval(timeID);
+    btnPauseIcon.classList.remove('fa-pause');
+    btnPauseIcon.classList.add('fa-play');
   } else {
-    intervalID = setInterval(() => {
-      timeNode.textContent = `${--time}`;
+    timeID = setInterval(() => {
+      timeBox.textContent = `${--time}`;
       if (!time) {
         gameOver();
       }
     }, 1000);
-    btnPauseIcon.className = 'fas fa-pause';
+    btnPauseIcon.classList.remove('fa-play');
+    btnPauseIcon.classList.add('fa-pause');
   }
 });
 /*
@@ -161,23 +154,40 @@ btnPause.addEventListener('click', () => {
 */
 
 function gameOver() {
-  header.classList.remove('show');
-  content.classList.remove('show');
-  overlay.classList.add('show');
+  overlayShow();
 
   overlayMain.setAttribute('src', './img/title_end.png')
   overlaySub.setAttribute('src', './img/cry.png');
   overlayBtn.textContent = 'Replay?';
 
-  lives.forEach(life => {
-    life.classList.remove('hidden');
+  hearts.forEach(heart => {
+    heart.classList.remove('hidden');
   });
 
-  clearInterval(intervalID);
-  curStage = 1;
-  curLives = 3;
+  clearInterval(timeID);
+  stage = 1;
+  heart = 3;
 }
 
 function win() {
   overlayMain.setAttribute('src', './img/title_win.png');
 };
+
+function audioSetting() {
+  audioBgm.loop = true;
+  audioBgm.volume = 0.5;
+  audioBug.volume = 0.7;
+  audioFile.volume = 0.7;
+}
+
+function overlayShow() {
+  overlay.classList.add('show');
+  header.classList.remove('show');
+  content.classList.remove('show');
+}
+
+function overlayHide() {
+  overlay.classList.remove('show'); 
+  header.classList.add('show');
+  content.classList.add('show');
+}

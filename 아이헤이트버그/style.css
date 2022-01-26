@@ -133,7 +133,6 @@ button {
 
 .header.show {
   display: flex;
-  border: 1px solid blue;
 }
 
 .header__status {
@@ -162,7 +161,7 @@ button {
   border-radius: 10px;
 }
 
-.header__time-and-lives {
+.header__time-and-hearts {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -172,7 +171,7 @@ button {
   margin-top: 5px;
 }
 
-.header__time, .header__lives {
+.header__time, .header__hearts {
   width: 8vw;
   background-color: var(--color-lighter-brown);
   border: 2px solid var(--color-black);
@@ -185,17 +184,17 @@ button {
   text-align: center;
 }
 
-.header__lives {
+.header__hearts {
   margin-left: 5px;
   color: red;
   text-align: left;
   padding-left: 10px;
 }
 
-.header__life {
+.header__heart {
 }
 
-.header__life.hidden {
+.header__heart.hidden {
   visibility: hidden;
 }
 
