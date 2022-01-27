@@ -161,7 +161,7 @@ button {
   border-radius: 10px;
 }
 
-.status__time-and-hearts {
+.status__time-and-life-points {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -171,7 +171,7 @@ button {
   margin-top: 5px;
 }
 
-.status__time, .status__hearts {
+.status__time, .status__life-points {
   width: 8vw;
   background-color: var(--color-lighter-brown);
   border: 2px solid var(--color-black);
@@ -184,17 +184,17 @@ button {
   text-align: center;
 }
 
-.status__hearts {
+.status__life-points {
   margin-left: 5px;
   color: red;
   text-align: left;
   padding-left: 10px;
 }
 
-.status__heart {
+.status__life-point {
 }
 
-.status__heart.hidden {
+.status__life-point.hidden {
   visibility: hidden;
 }
 
@@ -254,6 +254,7 @@ button {
 }
 
 .bug__img.hidden {
+  pointer-events: none;
   visibility: hidden;
   transform: scale(0.5) rotate(360deg);
 }
@@ -267,6 +268,7 @@ button {
 }
 
 .file__img.hidden {
+  pointer-events: none;
   visibility: hidden;
   transform: scale(0.5);
 }
