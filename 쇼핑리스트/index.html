@@ -15,36 +15,28 @@
     <script src="./main.js" defer></script>
   </head>
   <body>
-    <div class="shop-list">
-      <div class="shop-list__header">
-        <h2 class="shop-list__title">쇼핑 리스트</h3>
-        <time class="shop-list__date" datetime=""></time>
-      </div>
-
-      <div class="shop-list__main">
-        <ul class="shop-list__items">
-          <!-- <li class="shop-list__item">
-            <span class="item__name">우유</span>
-            <span class="item__price">2000원</span>
-            <i class="item__icon item__icon--check far fa-check-circle"></i>
-            <i class="item__icon item__icon--delete far fa-trash-alt"></i>
-          </li> -->
-        </ul>
-        <p class="shop-list__total-price">총 금액: <span>0</span>원</p>
-        <button class="shop-list__check-all">Check all</button>        <button class="shop-list__delete-all">Delete all</button>
-        <h2 class="shop-list__guidance">구매할 물건을 입력하세요:)</h2>
-      </div>
-
-      <div class="shop-list__footer">
-        <form class="shop-list_form">
-          <input class="shop-list__input shop-list__input--item" type="text" placeholder="제품명" autofocus>
-          <input class="shop-list__input shop-list__input--price"
+    <section class="shopping">
+      <header class="shopping__header">
+        <h2 class="header__title">쇼핑 리스트</h3>
+        <time class="header__date" datetime=""></time>
+      </header>
+      <section class="shopping__main">
+        <ul class="shopping__items"></ul>
+        <p class="shopping__total-price">총 금액: <span>0</span>원</p>
+        <button class="shopping__check-all">Check all</button>
+        <button class="shopping__delete-all">Delete all</button>
+        <h2 class="shopping__guidance">구매할 물건을 입력하세요:)</h2>
+      </section>
+      <section class="shopping__footer">
+        <form class="footer__form">
+          <input class="footer__input footer__input--item" type="text" placeholder="제품명" autofocus>
+          <input class="footer__input footer__input--price"
           type="text" placeholder="예상 가격(원)">
-          <button type="submit" class="shop-list__btn">
+          <button type="submit" class="footer__btn">
             <i class="btn__icon fas fa-cart-arrow-down"></i>
           </button>
         </form>
-      </div>
-    </div>
+      </section>
+    </section>
   </body>
 </html>

@@ -1,19 +1,19 @@
 // 현재 날짜 표시
 const today = new Date().toISOString().slice(0, 10); // 예) 2020-07-24
-const date = document.querySelector('.shop-list__date');
+const date = document.querySelector('.header__date');
 date.setAttribute('datetime', today);
 date.textContent = today.replace(/-/g, '. '); // 예) 2020. 07. 24
 
 // 아이템 리스트 추가
-const inputItem = document.querySelector('.shop-list__input--item');
-const inputPrice = document.querySelector('.shop-list__input--price');
-const items = document.querySelector('.shop-list__items');
-const totalPrice = document.querySelector('.shop-list__total-price');
-const totalPriceSpan = document.querySelector('.shop-list__total-price > span');
-const checkAll = document.querySelector('.shop-list__check-all');
-const deleteAll = document.querySelector('.shop-list__delete-all');
-const guidance = document.querySelector('.shop-list__guidance');
-const form = document.querySelector('.shop-list_form');
+const inputItem = document.querySelector('.footer__input--item');
+const inputPrice = document.querySelector('.footer__input--price');
+const items = document.querySelector('.shopping__items');
+const totalPrice = document.querySelector('.shopping__total-price');
+const totalPriceSpan = document.querySelector('.shopping__total-price > span');
+const checkAll = document.querySelector('.shopping__check-all');
+const deleteAll = document.querySelector('.shopping__delete-all');
+const guidance = document.querySelector('.shopping__guidance');
+const form = document.querySelector('.footer__form');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -55,7 +55,7 @@ function createListElem(item, price) {
   const n = {};
 
   // Node를 생성하고 className을 추가
-  n.li = createNodeAndClass('li', 'shop-list__item');
+  n.li = createNodeAndClass('li', 'shopping__item');
   n.itemName = createNodeAndClass('span', 'item__name');
   n.itemPrice = createNodeAndClass('span', 'item__price');
   n.iconCheck = createNodeAndClass('i', 'item__icon item__icon--check far fa-check-circle')

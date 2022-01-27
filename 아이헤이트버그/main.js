@@ -109,15 +109,15 @@ function overlayHide() {
 function reduceTime() {
   return setInterval(() => {
     time--;
-    updateTimeText();
-    if (time === 0) {
+    updateTimeText(time);
+    if (time <= 0) {
       gameOver();
       return;
     }
   }, 1000);
 }
 
-function updateTimeText() {
+function updateTimeText(time) {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
   timeDisplay.textContent = `${minutes} : ${seconds}`;
@@ -150,7 +150,7 @@ function addEvent() {
 
 function bugImgAddEvent() {
   bugImgs.forEach(bugImg => {
-    bugImg.addEventListener('click', () => {
+    bugImg.addEventListener('click', e => {
       audioBugPlay();
       bugImg.classList.add('hidden');
       bugNum--;
@@ -180,7 +180,7 @@ function fileImgAddEvent() {
       fileImg.classList.add('hidden');
       lifeNum--;
       lifePoints[lifeNum].classList.add('hidden');
-      if (lifeNum === 0) {
+      if (lifeNum <= 0) {
         gameOver();
       }
       audioFilePlay();
