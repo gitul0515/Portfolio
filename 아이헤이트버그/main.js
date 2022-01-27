@@ -1,59 +1,47 @@
-// 오디오
+// Audio
 const audioBgm = new Audio('./sound/bgm.mp3');
 const audioBug = new Audio('./sound/bug2.mp3');
 const audioFile = new Audio('./sound/file.mp3');
 audioSetting();
 
-// 스테이지
-let stage = 1;
+// stage setting
 const stageSetting = {
   1 : {
-    bugNum: 4,
-    time: 5
+    time: 50,
+    bugNum: 4
   },
   2 : {
-    bugNum: 4,
-    time: 50
+    time: 50,
+    bugNum: 4
   },
   3 : {
-    bugNum: 4,
-    time: 50
+    time: 50,
+    bugNum: 4
   }
 }
 
-// 남은 시간
-let time;
-let timeID;
-const timeBox = document.querySelector('.header__time');
+// global variable initialization
+let stage = 1;
+let time = stageSetting[stage].time;
+let timeId = undefined;
+let bugNum = stageSetting[stage].bugNum;
+let heart = 3;
 
-// overlayBtn 이벤트 설정
+// get DOM elements
 const overlay = document.querySelector('.overlay');
 const overlayBtn = document.querySelector('.overlay__btn');
 const header = document.querySelector('.header');
-const stageBox = document.querySelector('.header__stage');
+const stageBox = document.querySelector('.status__stage');
 const content = document.querySelector('.content');
 const bugs = document.querySelectorAll('.bug__img');
 const files = document.querySelectorAll('.file__img');
+const timeBox = document.querySelector('.status__time');
 
+// main
 overlayBtn.addEventListener('click', () => {
-  stageBox.textContent = `Stage ${stage}`;
-  time = stageSetting[stage].time;
-  timeBox.textContent = `${time}`;
-  
-  // 남은 시간을 1초마다 감소
-  timeID = setInterval(() => {
-    timeBox.textContent = `${--time}`;
-  if (!time) {
-    gameOver();
-    return;
-  }
-}, 1000);
-  createBugs(); createFiles();
-  overlayHide();
-  audioBgm.play();
+  stageStart();
 });
 
-// bugs를 생성하고 랜덤하게 배치
 function createBugs() {
   bugs.forEach(bug => {
     bug.classList.remove('hidden');
@@ -85,13 +73,11 @@ const overlaySub = document.querySelector('.overlay__sub-title');
 
 bugs.forEach(bug => {
   bug.addEventListener('click', () => {
-    audioBug.pause();
-    audioBug.currentTime = 0;
-    audioBug.play();
+    audioBugPlay();
     bug.classList.add('hidden');
-    stageSetting[stage].bugNum--;
-    if (!stageSetting[stage].bugNum) {
-      clearInterval(timeID);
+    bugNum--;
+    if (!bugNum) {
+      clearInterval(timeId);
 
       overlayShow();
 
@@ -111,13 +97,10 @@ bugs.forEach(bug => {
 });
 
 // files 이벤트 설정
-const hearts = [...document.querySelectorAll('.header__heart')];
-let heart = 3;
+const hearts = [...document.querySelectorAll('.status__heart')];
 files.forEach(file => {
   file.addEventListener('click', () => {
-    audioFile.pause();
-    audioFile.currentTime = 0;
-    audioFile.play();
+    audioFilePlay();
     file.classList.add('hidden');
     heart--;
     hearts[heart].classList.add('hidden');
@@ -132,11 +115,11 @@ const btnPause = document.querySelector('.header__btn--pause');
 const btnPauseIcon = document.querySelector('.header__btn--pause i');
 btnPause.addEventListener('click', () => {
   if (btnPauseIcon.className === 'fas fa-pause') {
-    clearInterval(timeID);
+    clearInterval(timeId);
     btnPauseIcon.classList.remove('fa-pause');
     btnPauseIcon.classList.add('fa-play');
   } else {
-    timeID = setInterval(() => {
+    timeId = setInterval(() => {
       timeBox.textContent = `${--time}`;
       if (!time) {
         gameOver();
@@ -164,9 +147,11 @@ function gameOver() {
     heart.classList.remove('hidden');
   });
 
-  clearInterval(timeID);
   stage = 1;
+  time = stageSetting[stage].time;
+  bugNum = stageSetting[stage].bugNum;
   heart = 3;
+  clearInterval(timeId);
 }
 
 function win() {
@@ -190,4 +175,38 @@ function overlayHide() {
   overlay.classList.remove('show'); 
   header.classList.add('show');
   content.classList.add('show');
+}
+
+function audioBugPlay() {
+  audioBug.pause();
+  audioBug.currentTime = 0;
+  audioBug.play();
+}
+
+function audioFilePlay() {
+  audioFile.pause();
+  audioFile.currentTime = 0;
+  audioFile.play();
+}
+
+function reduceTime() {
+  return setInterval(() => {
+    timeBox.textContent = `${--time}`;
+    if (!time) {
+      gameOver();
+      return;
+    }
+  }, 1000);
+}
+
+function stageStart() {
+  stageBox.textContent = `Stage ${stage}`;
+  time = stageSetting[stage].time;
+  timeBox.textContent = `${time}`;
+  timeId = reduceTime(); // reduce every 1 second
+  bugNum = stageSetting[stage].bugNum;
+
+  createBugs(); createFiles();
+  overlayHide();
+  audioBgm.play();
 }
