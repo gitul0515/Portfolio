@@ -274,8 +274,8 @@ button {
   transform: scale(0.5);
 }
 
-/* overlay screen 영역 */
-.overlay {
+/* screen 영역 */
+.screen {
   position: absolute;
   top: 0;
   left: 0;
@@ -289,37 +289,33 @@ button {
   display: none;
 }
 
-.overlay.show {
+.screen.show {
   display: flex;
 }
 
-.overlay--start {
-
-}
-
-.overlay__main-title {
+.screen__main-img {
   width: 65%;
   margin-top: 50px;
 }
 
-.overlay__sub-title {
-  width: 7%;
+.screen__sub-img {
+  width: 9%;
   transition: 1s;
   margin-top: 10px;
 }
 
-.overlay__sub-title:hover {
-  transform: rotate(225deg);
+.screen__sub-img:hover {
+  transform: scale(1.1);
 }
 
-.overlay__btn {
+.screen__text-btn {
   color: var(--color-white);
   font-size: calc(var(--font-medium)*1.2);
   margin-top: 20px;
   transition: 0.3s;
 }
 
-.overlay__btn:hover {
+.screen__text-btn:hover {
   transform: scale(1.1) translateY(2px);
 }
 

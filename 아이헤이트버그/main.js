@@ -21,17 +21,17 @@ const bugImgs = document.querySelectorAll('.bug__img');
 const fileImgs = document.querySelectorAll('.file__img');
 const btnPause = document.querySelector('.header__btn--pause');
 const btnPauseIcon = document.querySelector('.header__btn--pause i');
-const overlay = document.querySelector('.overlay');
-const overlayBtn = document.querySelector('.overlay__btn');
-const overlayMain = document.querySelector('.overlay__main-title');
-const overlaySub = document.querySelector('.overlay__sub-title');
+const screen = document.querySelector('.screen');
+const screenTextBtn = document.querySelector('.screen__text-btn');
+const screenMain = document.querySelector('.screen__main-img');
+const screenSub = document.querySelector('.screen__sub-img');
 
 audioSetting();
 startGame();
 addEvent();
 
 function startGame() {
-  overlayBtn.addEventListener('click', () => {
+  screenTextBtn.addEventListener('click', () => {
     startStage();
   });
 }
@@ -45,7 +45,7 @@ function startStage() {
   timeId = reduceTime();
 
   showBugImgs(); showFileImgs();
-  overlayHide();
+  screenHide();
   audioBgm.play();
 }
 
@@ -78,11 +78,11 @@ function showFileImgs() {
 }
 
 function gameOver() {
-  overlayShow();
+  screenShow();
 
-  overlayMain.setAttribute('src', './img/title_end.png')
-  overlaySub.setAttribute('src', './img/cry.png');
-  overlayBtn.textContent = 'Replay?';
+  screenMain.setAttribute('src', './img/game-over_main.png')
+  screenSub.setAttribute('src', './img/cry.png');
+  screenTextBtn.textContent = 'Replay?';
 
   lifePoints.forEach(lifePoint => {
     lifePoint.classList.remove('hidden');
@@ -96,17 +96,17 @@ function gameOver() {
 }
 
 function win() {
-  overlayMain.setAttribute('src', './img/title_win.png');
+  screenMain.setAttribute('src', './img/game-clear_main.png');
 };
 
-function overlayShow() {
-  overlay.classList.add('show');
+function screenShow() {
+  screen.classList.add('show');
   header.classList.remove('show');
   content.classList.remove('show');
 }
 
-function overlayHide() {
-  overlay.classList.remove('show'); 
+function screenHide() {
+  screen.classList.remove('show'); 
   header.classList.add('show');
   content.classList.add('show');
 }
@@ -165,20 +165,20 @@ function startBugImgEvent(bugImg) {
   bugImg.classList.add('hidden');
   bugNum--;
   if (bugNum <= 0) {
-    clearInterval(timeId); 
-    overlayShow();
-
     stage++;
+    clearInterval(timeId); 
+    screenShow();
+
     if (stage === 2) {
-      overlaySub.setAttribute('src', './img/bug2.png');
+      screenSub.setAttribute('src', './img/bug2.png');
     } else if (stage === 3) {
-      overlaySub.setAttribute('src', './img/bug3.png');
+      screenSub.setAttribute('src', './img/bug3.png');
     } else if (stage > 3) {
       win();
       return;
     }
-    overlayMain.setAttribute('src', './img/title_clear.png')
-    overlayBtn.textContent = 'Next Stage';
+    screenMain.setAttribute('src', './img/stage-clear_main.png')
+    screenTextBtn.textContent = 'Next Stage';
   }
 }
 
