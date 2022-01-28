@@ -27,25 +27,30 @@ const overlayMain = document.querySelector('.overlay__main-title');
 const overlaySub = document.querySelector('.overlay__sub-title');
 
 audioSetting();
-gameStart();
+startGame();
 addEvent();
 
-function gameStart() {
+function startGame() {
   overlayBtn.addEventListener('click', () => {
-    stageStart();
+    startStage();
   });
 }
 
-function stageStart() {
-  stageDisplay.textContent = `Stage ${stage}`;
+function startStage() {
   time = stageSetting[stage].time;
-  updateTimeText();
-  timeId = reduceTime(); // reduce every 1 second
   bugNum = stageSetting[stage].bugNum;
+
+  updateStageText(stage);
+  updateTimeText(time);
+  timeId = reduceTime();
 
   showBugImgs(); showFileImgs();
   overlayHide();
   audioBgm.play();
+}
+
+function updateStageText(stage) {
+  stageDisplay.textContent = `Stage ${stage}`;
 }
 
 function showBugImgs() {
