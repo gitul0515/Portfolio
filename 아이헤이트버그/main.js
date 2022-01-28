@@ -148,49 +148,48 @@ function audioFilePlay() {
 }
 
 function addEvent() {
-  bugImgAddEvent();
-  fileImgAddEvent();
   btnPauseAddEvent();
 }
 
-function bugImgAddEvent() {
-  bugImgs.forEach(bugImg => {
-    bugImg.addEventListener('click', e => {
-      audioBugPlay();
-      bugImg.classList.add('hidden');
-      bugNum--;
-      if (!bugNum) {
-        clearInterval(timeId); 
-        overlayShow();
-  
-        stage++;
-        if (stage === 2) {
-          overlaySub.setAttribute('src', './img/bug2.png');
-        } else if (stage === 3) {
-          overlaySub.setAttribute('src', './img/bug3.png');
-        } else if (stage > 3) {
-          win();
-          return;
-        }
-        overlayMain.setAttribute('src', './img/title_clear.png')
-        overlayBtn.textContent = 'Next Stage';
-      }
-    });
-  });
+content.addEventListener('click', e => {
+  const target = e.target;
+  if (target.className.includes('bug__img')) {
+    startBugImgEvent(target);
+  } else if (target.className.includes('file__img')) {
+    startFileImgEvent(target);
+  }
+});
+
+function startBugImgEvent(bugImg) {
+  audioBugPlay();
+  bugImg.classList.add('hidden');
+  bugNum--;
+  if (bugNum <= 0) {
+    clearInterval(timeId); 
+    overlayShow();
+
+    stage++;
+    if (stage === 2) {
+      overlaySub.setAttribute('src', './img/bug2.png');
+    } else if (stage === 3) {
+      overlaySub.setAttribute('src', './img/bug3.png');
+    } else if (stage > 3) {
+      win();
+      return;
+    }
+    overlayMain.setAttribute('src', './img/title_clear.png')
+    overlayBtn.textContent = 'Next Stage';
+  }
 }
 
-function fileImgAddEvent() {
-  fileImgs.forEach(fileImg => {
-    fileImg.addEventListener('click', () => {
-      fileImg.classList.add('hidden');
-      lifeNum--;
-      lifePoints[lifeNum].classList.add('hidden');
-      if (lifeNum <= 0) {
-        gameOver();
-      }
-      audioFilePlay();
-    });
-  });
+function startFileImgEvent(fileImg) {
+  fileImg.classList.add('hidden');
+  lifeNum--;
+  lifePoints[lifeNum].classList.add('hidden');
+  if (lifeNum <= 0) {
+    gameOver();
+  }
+  audioFilePlay();
 }
 
 function btnPauseAddEvent() {
