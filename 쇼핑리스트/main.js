@@ -117,18 +117,19 @@ function onIconDelete(n, price) {
 
 // checkAll 이벤트
 checkAll.addEventListener('click', () => {
-  // checked 되지 않은 iconCheck를 구한다
-  let iconChecks = [...document.querySelectorAll('.item__icon.item__icon--check.far.fa-check-circle')];
-  iconChecks = iconChecks.filter(icon => !icon.classList.contains('checked'));
+  // checked 되지 않은 iconCheck
+  let icons = [...document.querySelectorAll('.item__icon--check')];
 
-  iconChecks.forEach(icon => {
-    icon.dispatchEvent(new Event('click'));
+  icons.forEach(icon => {
+    if (!icon.className.includes('checked')) {
+      icon.dispatchEvent(new Event('click'));
+    }
   });
 });
 
 // deleteAll 이벤트
 deleteAll.addEventListener('click', () => {
-  const iconDelete = [...document.querySelectorAll('.item__icon.item__icon--delete.far.fa-trash-alt')];
+  const iconDelete = [...document.querySelectorAll('.item__icon--delete')];
 
   iconDelete.forEach(icon => {
     icon.dispatchEvent(new Event('click'));

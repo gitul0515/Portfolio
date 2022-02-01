@@ -1,5 +1,5 @@
 const stageSetting = {
-  1 : { time: 50, bugNum: 4 },
+  1 : { time: 5, bugNum: 4 },
   2 : { time: 50, bugNum: 4 },
   3 : { time: 50, bugNum: 4 }
 }
@@ -26,7 +26,7 @@ const screenTextBtn = document.querySelector('.screen__text-btn');
 const screenMain = document.querySelector('.screen__main-img');
 const screenSub = document.querySelector('.screen__sub-img');
 
-audioSetting();
+setAudio();
 startGame();
 addEvent();
 
@@ -37,15 +37,15 @@ function startGame() {
 }
 
 function startStage() {
+  screenHide();
   time = stageSetting[stage].time;
   bugNum = stageSetting[stage].bugNum;
 
   updateStageText(stage);
   updateTimeText(time);
-  timeId = reduceTime();
+  timeId = decreaseTime(1);
 
   showBugImgs(); showFileImgs();
-  screenHide();
   audioBgm.play();
 }
 
@@ -111,13 +111,12 @@ function screenHide() {
   content.classList.add('show');
 }
 
-function reduceTime() {
+function decreaseTime(num) {
   return setInterval(() => {
-    time--;
+    time -= num;
     updateTimeText(time);
     if (time <= 0) {
       gameOver();
-      return;
     }
   }, 1000);
 }
@@ -128,40 +127,43 @@ function updateTimeText(time) {
   timeDisplay.textContent = `${minutes} : ${seconds}`;
 }
 
-function audioSetting() {
+function setAudio() {
   audioBgm.loop = true;
   audioBgm.volume = 0.5;
   audioBug.volume = 0.7;
   audioFile.volume = 0.7;
 }
 
-function audioBugPlay() {
+function playBugAudio() {
   audioBug.pause();
   audioBug.currentTime = 0;
   audioBug.play();
 }
 
-function audioFilePlay() {
+function playFileAudio() {
   audioFile.pause();
   audioFile.currentTime = 0;
   audioFile.play();
 }
 
 function addEvent() {
-  btnPauseAddEvent();
+  addContentEvent();
+  addBtnPauseEvent();
 }
 
-content.addEventListener('click', e => {
-  const target = e.target;
-  if (target.className.includes('bug__img')) {
-    startBugImgEvent(target);
-  } else if (target.className.includes('file__img')) {
-    startFileImgEvent(target);
-  }
-});
+function addContentEvent() {
+  content.addEventListener('click', e => {
+    const target = e.target;
+    if (target.className.includes('bug__img')) {
+      startBugEvent(target);
+    } else if (target.className.includes('file__img')) {
+      startFileEvent(target);
+    }
+  });
+}
 
-function startBugImgEvent(bugImg) {
-  audioBugPlay();
+function startBugEvent(bugImg) {
+  playBugAudio();
   bugImg.classList.add('hidden');
   bugNum--;
   if (bugNum <= 0) {
@@ -182,17 +184,17 @@ function startBugImgEvent(bugImg) {
   }
 }
 
-function startFileImgEvent(fileImg) {
+function startFileEvent(fileImg) {
   fileImg.classList.add('hidden');
   lifeNum--;
   lifePoints[lifeNum].classList.add('hidden');
   if (lifeNum <= 0) {
     gameOver();
   }
-  audioFilePlay();
+  playFileAudio();
 }
 
-function btnPauseAddEvent() {
+function addBtnPauseEvent() {
   btnPause.addEventListener('click', () => {
     if (btnPauseIcon.className === 'fas fa-pause') {
       // Time pause

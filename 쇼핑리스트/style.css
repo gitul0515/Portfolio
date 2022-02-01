@@ -105,7 +105,7 @@ button {
 .shopping {
   background-color: var(--color-light-yellow);
   border-radius: 10px;
-  min-width: 300px;
+  min-width: 330px;
   max-width: 500px;
   position: absolute;
   top: 50px;
@@ -207,7 +207,7 @@ button {
 }
 
 .shopping__guidance.hidden {
-  opacity: 0;
+  visibility: hidden;
 }
 
 .shopping__footer {
