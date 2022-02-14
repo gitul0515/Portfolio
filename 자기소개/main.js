@@ -104,45 +104,31 @@ projectBtns.addEventListener('click', e => {
   }, 300);
 })
 
-// 스크롤하면 navbar__menu가 변화
-// 1. 모든 섹션 요소들과 메뉴 아이템들을 가지고 온다.
-// 2. IntersectionObserver을 이용해서 모든 섹션들을 관찰한다. 
-// 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화시킨다.
+// IntersectionObserver의 활용
+const navBarMenues = [...navbarMenu.children];
 
-const sectionIds = [
-  '#home',
-  '#about',
-  '#skills',
-  '#projects',
-  '#testimonials',
-  '#contact'
-];
-
-const sections = sectionIds.map(id => document.querySelector(id));
-const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
-let selectedNavItem = navItems[0];
-
-const observerOptions = {
+const options = {
   root: null,
   rootMargin: '0px',
-  threshold: 0.3
-};
-const observerCallback = (entries, observer) => {
+  threshold: 0.5
+}
+
+const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
-    if (!entry.isIntersecting && entry.intersectionRatio > 0) {
-      const index = sectionIds.indexOf(`#${entry.target.id}`);
-      let selectedIndex;
-      if (entry.boundingClientRect.y < 0) {
-        selectedIndex = index + 1;
-      } else {
-        selectedIndex = index - 1;
-      }
-      selectedNavItem.classList.remove('active');
-      selectedNavItem = navItems[selectedIndex];
-      selectedNavItem.classList.add('active');
+    if (entry.isIntersecting) {
+      /* const prevMenu = document.querySelector('.navbar__menu__items.active');
+      prevMenu.classList.remove('active');
+      const curMenu = navBarMenues.find(menu => 
+        menu.textContent.toLowerCase() === entry.target.getAttribute('id')
+      );
+      curMenu.classList.add('active'); */
+      console.log(entry);
+    } else {
+      console.error(entry.target);
     }
   });
-};
-const observer = new IntersectionObserver(observerCallback, observerOptions);
+}, options);
+
+const sections = document.querySelectorAll('section');
 sections.forEach(section => observer.observe(section));
 
