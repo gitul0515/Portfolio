@@ -105,30 +105,45 @@ projectBtns.addEventListener('click', e => {
 })
 
 // IntersectionObserver의 활용
-const navBarMenues = [...navbarMenu.children];
+const menues = [...navbarMenu.children];
+const sections = [...document.querySelectorAll('section')]; // data-set으로 가져오기
+let selectedMenu = menues[0];
+function changeSelectedMenu(newMenu) {
+  selectedMenu.classList.remove('active');
+  selectedMenu = newMenu;
+  selectedMenu.classList.add('active');
+}
 
 const options = {
   root: null,
   rootMargin: '0px',
-  threshold: 0.5
+  threshold: 0.5,
 }
 
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      /* const prevMenu = document.querySelector('.navbar__menu__items.active');
-      prevMenu.classList.remove('active');
-      const curMenu = navBarMenues.find(menu => 
-        menu.textContent.toLowerCase() === entry.target.getAttribute('id')
-      );
-      curMenu.classList.add('active'); */
-      console.log(entry);
-    } else {
-      console.error(entry.target);
+    if (!entry.isIntersecting && entry.intersectionRatio > 0) {
+      const i = sections.indexOf(entry.target);
+
+      if (entry.boundingClientRect.y < 0) { // 스크롤을 밑으로 내린 경우
+        changeSelectedMenu(menues[i + 1]);
+      } else { // 스크롤을 위로 올린 경우
+        changeSelectedMenu(menues[i - 1]);
+      }
     }
   });
 }, options);
 
-const sections = document.querySelectorAll('section');
 sections.forEach(section => observer.observe(section));
 
+document.addEventListener('scroll', () => {
+  // 문서의 시작점
+  if (scrollY === 0) {
+    changeSelectedMenu(menues[0]);
+  } 
+
+  // 문서의 맨끝
+  if (scrollY === document.body.scrollHeight - document.documentElement.clientHeight) {
+    changeSelectedMenu(menues[menues.length - 1]);
+  }
+})
