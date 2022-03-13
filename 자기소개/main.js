@@ -32,10 +32,8 @@ navbarMenu.addEventListener('click', event => {
   
   scrollToElem(link);
 
-  // 메뉴 버튼 스타일 처리
-  const prevMenu = document.querySelector('.navbar__menu__items.active');
-  prevMenu.classList.remove('active');
-  target.classList.add('active');
+  // 스타일 처리
+  // changeSelectedMenu(target);
 
   // 열려 있는 navbarMenu를 안 보이게 함
   navbarMenu.classList.remove('show');
@@ -105,8 +103,13 @@ projectBtns.addEventListener('click', e => {
 })
 
 // IntersectionObserver의 활용
-const menues = [...navbarMenu.children];
-const sections = [...document.querySelectorAll('section')]; // data-set으로 가져오기
+const sectionIDs = [
+  '#home', '#about', '#skills', '#projects', '#testimonials', '#contact'
+];
+
+const menues = sectionIDs.map(id => document.querySelector(`li[data-link='${id}']`));
+const sections = sectionIDs.map(id => document.querySelector(id));
+
 let selectedMenu = menues[0];
 function changeSelectedMenu(newMenu) {
   selectedMenu.classList.remove('active');
@@ -114,7 +117,7 @@ function changeSelectedMenu(newMenu) {
   selectedMenu.classList.add('active');
 }
 
-const options = {
+const observerOptions = {
   root: null,
   rootMargin: '0px',
   threshold: 0.5,
@@ -132,18 +135,18 @@ const observer = new IntersectionObserver((entries, observer) => {
       }
     }
   });
-}, options);
+}, observerOptions);
 
 sections.forEach(section => observer.observe(section));
 
-document.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
   // 문서의 시작점
   if (scrollY === 0) {
     changeSelectedMenu(menues[0]);
   } 
 
   // 문서의 맨끝
-  if (scrollY === document.body.scrollHeight - document.documentElement.clientHeight) {
+  if (Math.round(scrollY) >= document.body.scrollHeight - document.documentElement.clientHeight) {
     changeSelectedMenu(menues[menues.length - 1]);
   }
 })
