@@ -1,66 +1,59 @@
-// navBar의 toggle-btn을 클릭하면 navbar__menu가 보여짐
-const navbarToggle = document.querySelector('.navbar__toggle-btn');
-const navbarMenu = document.querySelector('.navbar__menu');
-
-navbarToggle.addEventListener('click', () => {
-  navbarMenu.classList.toggle('show');
-})
-
-// 스크롤이 내려가면 navBar의 배경색을 green로 변경
+// 스크롤 이동 시, navBar의 배경색을 transparent 또는 green로 변경
 const navBar = document.querySelector('#navbar');
 const navBarHeight = navBar.getBoundingClientRect().height;
 
-if (scrollY > navBarHeight) {
-  navBar.classList.add('bg-green');
-} else {
-  navBar.classList.remove('bg-green');
-}
-
+changeNavBarColor();
 document.addEventListener('scroll', () => {
+  changeNavBarColor();
+})
+
+function changeNavBarColor() {
   if (scrollY > navBarHeight) {
     navBar.classList.add('bg-green');
   } else {
     navBar.classList.remove('bg-green');
   }
-})
+}
 
-// navbar__menu를 클릭하면 해당 위치로 스크롤 이동
+// navbar의 menu 클릭 시 해당 섹션으로 스크롤 이동
+const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', event => {
-  const target = event.target;
-  const link = target.dataset.link;
-  if (!link) return;
+  const { target } = event;
+  const { link: section } = target.dataset;
+  if (!section) return;
   
-  scrollToElem(link);
+  scrollIntoView(section); // 함수 오버로딩
 
-  // 스타일 처리
-  // changeSelectedMenu(target);
-
-  // 열려 있는 navbarMenu를 안 보이게 함
   navbarMenu.classList.remove('show');
 })
 
-// home__contact을 클릭하면 contact 섹션으로 스크롤 이동
-const homeContact = document.querySelector('.home__contact');
-homeContact.addEventListener('click', () => {
-  scrollToElem('#contact');
+// navBar의 toggle 버튼 클릭 이벤트
+const navbarToggle = document.querySelector('.navbar__toggle-btn');
+navbarToggle.addEventListener('click', () => {
+  navbarMenu.classList.toggle('show');
+});
+
+// contact 버튼 클릭 시 contact 섹션으로 스크롤 이동
+const contact = document.querySelector('.home__contact');
+contact.addEventListener('click', () => {
+  scrollIntoView('#contact');
 })
 
-function scrollToElem(selector) {
-  const element = document.querySelector(selector);
-  element.scrollIntoView({behavior: 'smooth'});
+function scrollIntoView(selector) {
+  const destination = document.querySelector(selector);
+  destination.scrollIntoView({behavior: 'smooth'});
 }
 
-// 스크롤이 내려가면 home 섹션이 투명해짐
+// 스크롤을 내리면 home 섹션이 투명해진다
+// (배경 이미지는 투명해지지 않음)
 const homeHeight = document.querySelector('#home').getBoundingClientRect().height;
-
 document.addEventListener('scroll', () => {
-  const homeOpacity = document.querySelector('.home__container');
-  homeOpacity.style.opacity = `${1 - scrollY / homeHeight}`;
+  document.querySelector('.home__container')
+  .style.opacity = `${1 - scrollY / homeHeight}`;
 })
 
-// 버튼을 클릭하면 스크롤이 맨 위로 올라감
+// backToTop 버튼 클릭 시 맨위로 스크롤 이동
 const backToTop = document.querySelector('#back-to-top');
-
 document.addEventListener('scroll', () => {
   if (scrollY > homeHeight / 2) {
     backToTop.classList.add('show');
@@ -68,49 +61,45 @@ document.addEventListener('scroll', () => {
     backToTop.classList.remove('show');
   }
 })
-
 backToTop.addEventListener('click', () => {
   scrollTo({top: 0, behavior: 'smooth'});
 })
 
-// 카테고리로 분류하여 프로젝트를 보여주기
-const projectBtns = document.querySelector('.projects__categories');
+// 카테고리에 맞게 프로젝트를 필터링
 const projectContainer = document.querySelector('.projects__work');
 const projects = [...document.querySelectorAll('.project')];
+const projectBtns = document.querySelector('.projects__categories');
+let selectedBtn = document.querySelector('.category__btn.active');
 
-projectBtns.addEventListener('click', e => {
-  const target = e.target;
-  const filter = target.dataset.filter;
-  if (!filter) return;
+projectBtns.addEventListener('click', event => {
+  const { target } = event;
+  const { category } = target.dataset;
+  if (!category) return;
 
-  // 버튼 처리
-  const prevButton = document.querySelector('.category__btn.active');
-  prevButton.classList.remove('active');
-  target.classList.add('active');
+  selectedBtn.classList.remove('active');
+  selectedBtn = target;
+  selectedBtn.classList.add('active');
   
-  // 프로젝트 필터링
   projectContainer.classList.add('fade-out');
   setTimeout(() => {
-    projects.forEach(project => {
-      if(filter === '*' || filter === project.dataset.filter) {
-        project.classList.remove('invisible');
-      } else {
-        project.classList.add('invisible');
-      }
-    })
+    projects.forEach(project => filterProjects(project, category));
     projectContainer.classList.remove('fade-out');
   }, 300);
 })
 
-// IntersectionObserver의 활용
-const sectionIDs = [
-  '#home', '#about', '#skills', '#projects', '#testimonials', '#contact'
-];
+function filterProjects(project, category) {
+  if(category === '*' || category === project.dataset.category) {
+    project.classList.remove('invisible');
+  } else {
+    project.classList.add('invisible');
+  }
+}
 
-const menues = sectionIDs.map(id => document.querySelector(`li[data-link='${id}']`));
-const sections = sectionIDs.map(id => document.querySelector(id));
+// 스크롤 이동 시, 각 섹션에 맞는 navbarMenu를 포커싱
+const sections = [...document.querySelectorAll('section')];
+const navbarMenuItems = [...navbarMenu.children];
+let selectedMenu = navbarMenuItems[0];
 
-let selectedMenu = menues[0];
 function changeSelectedMenu(newMenu) {
   selectedMenu.classList.remove('active');
   selectedMenu = newMenu;
@@ -129,9 +118,9 @@ const observer = new IntersectionObserver((entries, observer) => {
       const i = sections.indexOf(entry.target);
 
       if (entry.boundingClientRect.y < 0) { // 스크롤을 밑으로 내린 경우
-        changeSelectedMenu(menues[i + 1]);
+        changeSelectedMenu(navbarMenuItems[i + 1]);
       } else { // 스크롤을 위로 올린 경우
-        changeSelectedMenu(menues[i - 1]);
+        changeSelectedMenu(navbarMenuItems[i - 1]);
       }
     }
   });
@@ -139,14 +128,14 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 sections.forEach(section => observer.observe(section));
 
-window.addEventListener('scroll', () => {
+document.addEventListener('scroll', () => {
   // 문서의 시작점
   if (scrollY === 0) {
-    changeSelectedMenu(menues[0]);
+    changeSelectedMenu(navbarMenuItems[0]);
   } 
 
   // 문서의 맨끝
   if (Math.round(scrollY) >= document.body.scrollHeight - document.documentElement.clientHeight) {
-    changeSelectedMenu(menues[menues.length - 1]);
+    changeSelectedMenu(navbarMenuItems[navbarMenuItems.length - 1]);
   }
 })
